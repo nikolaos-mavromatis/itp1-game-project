@@ -194,12 +194,43 @@ function drawCollectables() {
 }
 
 function displayScoreAndLives() {
-    // Display Score & lives
-    textSize(30);
+    var coin;
+    var nScoreDigits;
+    var topMargin = 0.02 * height
+    var rightMargin = 0.01 * width
+    var fontSize = 30;
+
+    function redCrossLife(x, y, size, alive) {
+        var shortSide = size / 3;
+
+        fill(255, 168, 0);
+        //vertical bar
+        rect(x - shortSide / 2, y - size / 2, shortSide, size);
+        //horizontal
+        rect(x - size / 2, y - shortSide / 2, size, shortSide);
+
+    }
+
+    // Display red crosses for lives
+    for (var i = 0; i < lives; i++) {
+        redCrossLife(width - rightMargin - 15 - i * (30 + rightMargin), topMargin + 15, 30, true);
+    }
+
+
+    // Display coin and score
+    textSize(fontSize);
     textFont(font);
     textAlign(RIGHT, TOP);
     fill(255, 168, 0);
-    text("LIVES: " + lives + "\nSCORE: " + game_score, 0.99 * width, 0.02 * height);
+    // text("LIVES: " + lives + "\nSCORE: " + game_score, 0.99 * width, 0.02 * height);
+
+    nScoreDigits = game_score.toString().length;
+    console.log(nScoreDigits);
+    text(game_score, width - rightMargin, 2 * topMargin + fontSize);
+    coin = new Collectable(width - rightMargin - 20 - nScoreDigits * 17, 63, 30, "coin");
+    coin.draw();
+
+
 }
 
 function displayGameOver() {
