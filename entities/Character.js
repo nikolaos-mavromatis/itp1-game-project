@@ -13,6 +13,7 @@ class Character {
         this.isFalling = true;
         this.isPlummeting = false;
         this.isOnPlatform = false;
+        this.hitEnemy = false;
     }
 
     draw() {
@@ -274,7 +275,7 @@ class Character {
             this.isRight = true;
         }
 
-        if ((key == 'W' || keyCode == 32) && !flagpole.isReached) {
+        if ((key == 'W' || keyCode == 32) && !flagpole.isReached && !this.isPlummeting) {
             if (!this.isFalling || this.isOnPlatform) {
                 jumpSound.play();
                 this.y -= 100;
@@ -295,11 +296,22 @@ class Character {
     }
 
     checkPlayerDie() {
-        if (this.y > height + 100) {
+        for (var i = 0; i < enemies.length; i++) {
+            this.hitEnemy = enemies[i].checkContact(gameChar_world_x, this.y);
+
+            if (this.hitEnemy) {
+                break;
+            }
+        }
+
+        if (this.y > height + 100 || this.hitEnemy) {
             lives -= 1;
-            loseLifeSound.play();
             if (lives > 0) {
+                loseLifeSound.play();
                 startGame();
+            }
+            else {
+                gameOverSound.play();
             }
         }
     }
