@@ -27,6 +27,8 @@ var jumpSound;
 var backgroundMusic;
 var coinCollectedSound;
 var loseLifeSound;
+var levelCompleteSound;
+var gameOverSound;
 
 
 function preload() {
@@ -39,21 +41,27 @@ function preload() {
     jumpSound.setVolume(0.1);
 
     backgroundMusic = loadSound('assets/sounds/backgroundMusic.wav');
-    backgroundMusic.setVolume(0.05);
+    backgroundMusic.setVolume(0.03);
 
     coinCollectedSound = loadSound("assets/sounds/coinCollected.wav");
-    coinCollectedSound.setVolume(0.08);
+    coinCollectedSound.setVolume(0.05);
 
     loseLifeSound = loadSound("./assets/sounds/loseLife.wav");
-    loseLifeSound.setVolume(0.1);
+    loseLifeSound.setVolume(0.08);
+
+    levelCompleteSound = loadSound("./assets/sounds/levelComplete.wav");
+    levelCompleteSound.setVolume(0.1);
+
+    gameOverSound = loadSound("./assets/sounds/gameOver.wav");
+    gameOverSound.setVolume(0.15)
 }
 
 function setup() {
     createCanvas(1024, 576);
+    backgroundMusic.loop();
+
     lives = 3;
     floorPos_y = height * 3 / 4;
-
-    backgroundMusic.loop();
 
     startGame();
 }
@@ -70,6 +78,7 @@ function draw() {
     translate(scrollPos, 0);
 
     // Draw world elements
+
     drawMountains();
 
     drawClouds();
@@ -82,16 +91,18 @@ function draw() {
 
     drawCollectables();
 
-    // renderFlagpole(flagpole.pos_x, flagpole.pos_y, flagpole.isReached);
     flagpole.render();
+
+    drawEnemies();
+
     pop();
 
     // Draw the game character - this must be last
-    // drawGameChar(gameChar_x, gameChar_y);
     character.draw();
 
     // Below (if true) should happen before the player has the chance to move
     if (lives < 1) {
+        backgroundMusic.pause();
         displayGameOver();
         return;
     }
@@ -118,64 +129,28 @@ function draw() {
 }
 
 function keyPressed() {
-    character.keyPressedInteraction();
+    if (lives > 0) {
+        character.keyPressedInteraction();
+    }
 }
 
 function keyReleased() {
-    character.keyReleasedInteraction();
+    if (lives > 0) {
+        character.keyReleasedInteraction();
+    }
 
-    if (keyCode == 32 && (flagpole.isReached || lives == 0)) {
+    if (keyCode == 32 && (flagpole.isReached || lives < 1)) {
         startGame();
         lives = 3;
     }
 }
 
-function drawTree(x, y, h) {
-    let w = (2 * h) / 3;
-    let trunk_w = w / 4;
-    let trunk_h = h / 4;
+function drawEnemies() {
+    for (var i = 0; i < enemies.length; i++) {
+        enemies[i].draw();
+    }
 
-    let a;
-    let b;
 
-    //trunk
-    fill(160, 85, 45);
-    rect(
-        x - trunk_w / 2,
-        y - trunk_h,
-        trunk_w,
-        trunk_h
-    );
-    // canopy
-    fill(0, 100, 0);
-    triangle(
-        x - w / 2,
-        y - trunk_h,
-        x + w / 2,
-        y - trunk_h,
-        x,
-        y - h,
-    );
-    a = 0.95;
-    b = 1.6;
-    triangle(
-        x - a * w / 2,
-        y - b * trunk_h,
-        x + a * w / 2,
-        y - b * trunk_h,
-        x,
-        y - h,
-    );
-    a = 0.85;
-    b = 2.2;
-    triangle(
-        x - a * w / 2,
-        y - b * trunk_h,
-        x + a * w / 2,
-        y - b * trunk_h,
-        x,
-        y - h,
-    );
 }
 
 function drawTrees() {
@@ -250,14 +225,22 @@ function displayLevelComplete() {
 }
 
 function startGame() {
+    if (backgroundMusic.isPaused()) {
+        backgroundMusic.play();
+    }
 
-    coinCollectedSound.play();
     game_score = 0;
 
     gameChar_x = width / 2;
     gameChar_y = floorPos_y;
 
     character = new Character(gameChar_x, gameChar_y);
+
+    enemies = [
+        new Enemy(200, floorPos_y, 150),
+        new Enemy(680, floorPos_y - 150, 140),
+        new Enemy(900, floorPos_y, 150),
+    ];
 
     // World elements
     let randTreeSize = 30;

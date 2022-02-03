@@ -50,6 +50,7 @@ class Flagpole {
     checkReached() {
         if (abs(gameChar_world_x - this.x) <= 30) {
             this.isReached = true;
+            levelCompleteSound.play();
         }
     }
 }
