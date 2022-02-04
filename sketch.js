@@ -18,6 +18,7 @@ var collectables;
 var canyons;
 var platforms;
 var flagpole;
+var rotatingCollectable;
 
 var game_score;
 var lives;
@@ -29,6 +30,8 @@ var coinCollectedSound;
 var loseLifeSound;
 var levelCompleteSound;
 var gameOverSound;
+
+var angle;
 
 
 function preload() {
@@ -64,6 +67,7 @@ function setup() {
 
     lives = 3;
     floorPos_y = height * 3 / 4;
+    angle = 0;
 
     startGame();
 }
@@ -196,6 +200,21 @@ function drawCollectables() {
             collectables[i].checkCollectable();
         }
     }
+
+    if (!rotatingCollectable.isFound) {
+        push();
+        translate(3495, floorPos_y - 2.5 * rotatingCollectable.size);
+        v = createVector(rotatingCollectable.size, rotatingCollectable.size);
+        v.rotate(angle);
+        rotatingCollectable.x = v.x;
+        rotatingCollectable.y = v.y;
+        rotatingCollectable.draw();
+        angle += 0.02;
+        pop();
+        rotatingCollectable.x = 3495 + v.x;
+        rotatingCollectable.y = floorPos_y - 2 * rotatingCollectable.size + v.y;
+        rotatingCollectable.checkCollectable();
+    }
 }
 
 function displayScoreAndLives() {
@@ -302,7 +321,7 @@ function startGame() {
         new Canyon(1140, floorPos_y, 100),
         new Canyon(1600, floorPos_y, 100),
         new Canyon(1800, floorPos_y, 100),
-        new Canyon(2800, floorPos_y, 600),
+        new Canyon(2800, floorPos_y, 50),
     ];
 
     platforms = [
@@ -314,10 +333,10 @@ function startGame() {
     ];
 
     enemies = [
-        new Enemy(x = 420, y = floorPos_y, range = 150),
-        new Enemy(900, floorPos_y, 150),
-        new Enemy(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, platforms[3].w),
-        new Enemy(2000, floorPos_y, 250),
+        // new Enemy(x = 420, y = floorPos_y, range = 150),
+        // new Enemy(900, floorPos_y, 150),
+        // new Enemy(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, platforms[3].w),
+        // new Enemy(2000, floorPos_y, 250),
     ];
 
     collectables = [
@@ -356,6 +375,8 @@ function startGame() {
             }
         }
     }
+
+    rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");
 
     flagpole = new Flagpole(x = 3946, y = floorPos_y);
 
