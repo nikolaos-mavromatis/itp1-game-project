@@ -32,11 +32,12 @@ var gameOverSound;
 
 
 function preload() {
+    // Text font
     font = loadFont('./assets/fonts/LuckiestGuy-Regular.ttf');
 
+    // Sounds
     soundFormats('mp3', 'wav');
 
-    //load your sounds here
     jumpSound = loadSound('assets/sounds/jump.wav');
     jumpSound.setVolume(0.1);
 
@@ -58,6 +59,7 @@ function preload() {
 
 function setup() {
     createCanvas(1024, 576);
+
     backgroundMusic.loop();
 
     lives = 3;
@@ -67,12 +69,15 @@ function setup() {
 }
 
 function draw() {
-
-    background(100, 155, 255); // fill the sky blue
-
     noStroke();
+
+    // fill the sky blue
+    // TODO:dim the sky the closer the character gets to the flagpole
+    background(100, 155, 255);
+
+    // draw some green ground
     fill(0, 155, 0);
-    rect(0, floorPos_y, width, height / 4); // draw some green ground
+    rect(0, floorPos_y, width, height / 4);
 
     push();
     translate(scrollPos, 0);
