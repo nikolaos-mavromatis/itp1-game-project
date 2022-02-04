@@ -1,3 +1,7 @@
+/* BUG: when character on the platform scrollPos doesn't work
+The screen should scroll with the character standing on the platform. 
+Maybe different scrollPos values for various reasons. 
+*/
 class Platform {
     constructor(x, y, size, range) {
         this.x = x;
@@ -15,8 +19,6 @@ class Platform {
         this.walkLevel = this.y - this.h;
         this.currentX = x;
         this.inc = 1;
-
-
     }
 
     update() {
@@ -25,7 +27,6 @@ class Platform {
         if (this.currentX >= this.x + this.range || this.currentX < this.x) {
             this.inc *= -1;
         }
-
     }
 
     draw() {

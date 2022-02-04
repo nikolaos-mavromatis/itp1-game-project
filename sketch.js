@@ -58,7 +58,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(4 * 1024, 576);
+    createCanvas(1024, 576);
 
     backgroundMusic.loop();
 
@@ -266,8 +266,8 @@ function startGame() {
 
     game_score = 0;
 
-    // gameChar_x = 0.2 * width;
-    gameChar_x = 2450;
+    gameChar_x = 0.2 * width;
+    // gameChar_x = 2450;
     gameChar_y = floorPos_y;
 
     character = new Character(gameChar_x, gameChar_y);
@@ -310,7 +310,7 @@ function startGame() {
         new Platform(775, floorPos_y - 60, 80, 0),
         new Platform(990, floorPos_y - 120, 250, 0),
         new Platform(1260, floorPos_y - 180, 200, 0),
-        new Platform(2555, floorPos_y - 60, 150, 500),
+        new Platform(2555, floorPos_y - 60, 150, 485),
     ];
 
     enemies = [
@@ -327,10 +327,8 @@ function startGame() {
 
 
     // ==================================================================== //
-    // TODO: make function
+    // TODO: make function: treat all colllectables as 2D arrays
     var collSize = 30;
-
-    var posX = platforms[2].x - floor(nCoins / 2) * collSize + i * collSize + 15
 
     var nCoins = floor(platforms[2].w / collSize)
     for (var i = 0; i < nCoins; i++) {
@@ -348,9 +346,15 @@ function startGame() {
     }
 
     // ==================================================================== //
-
-    for (var i = 0; i < 2; i++) {
-        for (var j = 0; j <)
+    nCoins = 8;
+    for (var i = 0; i < nCoins; i++) {
+        for (var j = 0; j < 2; j++) {
+            if (i + j % 2 != 0) {
+                collectables.push(
+                    new Collectable(canyons[4].x - floor(nCoins / 2) * collSize + i * collSize + 15, platforms[4].walkLevel - 20 - 40 - (i % 2) * collSize, collSize, "coin")
+                )
+            }
+        }
     }
 
     flagpole = new Flagpole(x = 3946, y = floorPos_y);
