@@ -58,7 +58,7 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(1024, 576);
+    createCanvas(4 * 1024, 576);
 
     backgroundMusic.loop();
 
@@ -102,10 +102,10 @@ function draw() {
 
     pop();
 
-    // Draw the game character - this must be last
+    // Draw the game character
     character.draw();
 
-    // Below (if true) should happen before the player has the chance to move
+    // Below statements (if true) should happen before the player has the chance to move
     if (lives < 1) {
         backgroundMusic.pause();
         displayGameOver();
@@ -230,7 +230,6 @@ function displayScoreAndLives() {
     // text("LIVES: " + lives + "\nSCORE: " + game_score, 0.99 * width, 0.02 * height);
 
     nScoreDigits = game_score.toString().length;
-    console.log(nScoreDigits);
     text(game_score, width - rightMargin, 2 * topMargin + fontSize);
     coin = new Collectable(width - rightMargin - 20 - nScoreDigits * 17, 63, 30, "coin");
     coin.draw();
@@ -267,27 +266,15 @@ function startGame() {
 
     game_score = 0;
 
-    gameChar_x = width / 2;
+    // gameChar_x = 0.2 * width;
+    gameChar_x = 2450;
     gameChar_y = floorPos_y;
 
     character = new Character(gameChar_x, gameChar_y);
 
-    enemies = [
-        new Enemy(200, floorPos_y, 150),
-        new Enemy(680, floorPos_y - 150, 140),
-        new Enemy(900, floorPos_y, 150),
-    ];
-
     // World elements
-    let randTreeSize = 30;
     trees = [
-        new Tree(100, floorPos_y, 170 + random(-randTreeSize, randTreeSize)),
-        new Tree(400, floorPos_y, 170 + random(-randTreeSize, randTreeSize)),
-        new Tree(800, floorPos_y, 170 + random(-randTreeSize, randTreeSize)),
-        new Tree(1000, floorPos_y, 170 + random(-randTreeSize, randTreeSize)),
-        new Tree(1500, floorPos_y, 170 + random(-randTreeSize, randTreeSize)),
-        new Tree(1800, floorPos_y, 170 + random(-randTreeSize, randTreeSize)),
-        new Tree(2200, floorPos_y, 170 + random(-randTreeSize, randTreeSize)),
+        new Tree(x = 350, floorPos_y, 170),
     ];
 
     clouds = [
@@ -302,63 +289,71 @@ function startGame() {
     ];
 
     mountains = [
-        new Mountain(x = 100, y = floorPos_y, size = 400, dark = false),
-        new Mountain(220, floorPos_y, 350, true),
+        // new Mountain(x = 100, y = floorPos_y, size = 400, dark = false),
         new Mountain(800, floorPos_y, 450, false),
+        new Mountain(520, floorPos_y, 350, true),
         new Mountain(1100, floorPos_y, 350, true),
         new Mountain(1750, floorPos_y, 200, true),
         new Mountain(1900, floorPos_y, 350, false),
     ];
 
     canyons = [
-        new Canyon(x = 2000, y = floorPos_y, size = 100),
-        new Canyon(800, floorPos_y, 120),
-        new Canyon(1100, floorPos_y, 120),
-        new Canyon(1600, floorPos_y, 90),
+        new Canyon(x = 620, y = floorPos_y, size = 100),
+        new Canyon(1140, floorPos_y, 100),
+        new Canyon(1600, floorPos_y, 100),
+        new Canyon(1800, floorPos_y, 100),
+        new Canyon(2800, floorPos_y, 600),
     ];
 
     platforms = [
-        new Platform(600, floorPos_y - 60, 80),
-        new Platform(750, floorPos_y - 120, 150)
+        new Platform(520, floorPos_y - 60, 80, 0),
+        new Platform(775, floorPos_y - 60, 80, 0),
+        new Platform(990, floorPos_y - 120, 250, 0),
+        new Platform(1260, floorPos_y - 180, 200, 0),
+        new Platform(2555, floorPos_y - 60, 150, 500),
     ];
 
-    collectables = [];
-    let offset = 0;
-    let type;
-    let coll_size = 30;
-    let coll_pos;
-    for (var i = 0; i < 20; i++) {
-        let levelY = floorPos_y - coll_size;
+    enemies = [
+        new Enemy(x = 420, y = floorPos_y, range = 150),
+        new Enemy(900, floorPos_y, 150),
+        new Enemy(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, platforms[3].w),
+        new Enemy(2000, floorPos_y, 250),
+    ];
 
-        if (i % 2 == 0) {
-            type = "diamond";
-        } else {
-            type = "coin";
-        }
+    collectables = [
+        new Collectable(platforms[0].x, platforms[0].walkLevel - 20, 30, "coin"),
+        new Collectable(1700, floorPos_y - 20, 30, "diamond"),
+    ]
 
-        if (i < 7) {
-            coll_pos = 600;
-            offset = i;
-        } else if (i < 15) {
-            coll_pos = 1200;
-            offset = i - 8;
-            levelY = floorPos_y - 100;
-        } else {
-            coll_pos = 1800;
-            offset = i - 16;
-        }
+
+    // ==================================================================== //
+    // TODO: make function
+    var collSize = 30;
+
+    var posX = platforms[2].x - floor(nCoins / 2) * collSize + i * collSize + 15
+
+    var nCoins = floor(platforms[2].w / collSize)
+    for (var i = 0; i < nCoins; i++) {
         collectables.push(
-            new Collectable(
-                coll_pos + offset * coll_size,
-                levelY,
-                coll_size,
-                type,
-                false
-            )
-        );
+            new Collectable(platforms[2].x - floor(nCoins / 2) * collSize + i * collSize + 15, platforms[2].walkLevel - 20, collSize, "coin")
+        )
     }
 
-    flagpole = new Flagpole(x = 1000, y = floorPos_y);
+    var nCoins = floor(platforms[3].w / collSize) // if not provided fill in the whole width
+    nCoins = 3;
+    for (var i = 0; i < nCoins; i++) {
+        collectables.push(
+            new Collectable(platforms[3].x - floor(nCoins / 2) * collSize + i * collSize, platforms[3].walkLevel - 20 - 70, collSize, "coin")
+        )
+    }
+
+    // ==================================================================== //
+
+    for (var i = 0; i < 2; i++) {
+        for (var j = 0; j <)
+    }
+
+    flagpole = new Flagpole(x = 3946, y = floorPos_y);
 
     // Variable to control the background scrolling.
     scrollPos = 0;

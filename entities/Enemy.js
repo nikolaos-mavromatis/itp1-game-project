@@ -13,10 +13,7 @@ class Enemy {
     update() {
         this.currentX += this.inc;
 
-        if (this.currentX >= this.x + this.range) {
-            this.inc *= -1;
-        }
-        else if (this.currentX < this.x) {
+        if (this.currentX >= this.x + this.range || this.currentX < this.x) {
             this.inc *= -1;
         }
 

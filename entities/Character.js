@@ -242,6 +242,7 @@ class Character {
 
                 if (this.isOnPlatform) {
                     this.isFalling = false;
+                    this.x += platforms[i].inc;
                     break;
                 }
             }
