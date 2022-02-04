@@ -3,12 +3,20 @@ class Platform {
         this.x = x;
         this.y = y;
         this.w = size;
-        this.h = 20;
         this.range = range;
 
+        this.h = 20;
+        if (range > 0) {
+            this.isMoving = true;
+        }
+        else {
+            this.isMoving = false;
+        }
         this.walkLevel = this.y - this.h;
         this.currentX = x;
         this.inc = 1;
+
+
     }
 
     update() {
@@ -21,7 +29,7 @@ class Platform {
     }
 
     draw() {
-        if (this.range > 0) {
+        if (this.isMoving) {
             this.update();
         }
 
