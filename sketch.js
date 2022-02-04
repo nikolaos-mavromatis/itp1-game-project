@@ -284,9 +284,7 @@ function startGame() {
     }
 
     game_score = 0;
-
     gameChar_x = 0.2 * width;
-    // gameChar_x = 2450;
     gameChar_y = floorPos_y;
 
     character = new Character(gameChar_x, gameChar_y);
@@ -321,7 +319,7 @@ function startGame() {
         new Canyon(1140, floorPos_y, 100),
         new Canyon(1600, floorPos_y, 100),
         new Canyon(1800, floorPos_y, 100),
-        new Canyon(2800, floorPos_y, 50),
+        new Canyon(2800, floorPos_y, 600),
     ];
 
     platforms = [
@@ -333,10 +331,10 @@ function startGame() {
     ];
 
     enemies = [
-        // new Enemy(x = 420, y = floorPos_y, range = 150),
-        // new Enemy(900, floorPos_y, 150),
-        // new Enemy(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, platforms[3].w),
-        // new Enemy(2000, floorPos_y, 250),
+        new Enemy(x = 420, y = floorPos_y, range = 150),
+        new Enemy(900, floorPos_y, 150),
+        new Enemy(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, platforms[3].w),
+        new Enemy(2000, floorPos_y, 250),
     ];
 
     collectables = [
