@@ -347,20 +347,18 @@ function startGame() {
     collectables = collectables.concat(c1, c2, c3, c4);
 
     // ==================================================================== //
-    // TODO: use utils' collectables2DArray with pattern
-    var collSize = 30;
+    var pattern = [];
     var nCoins = 8;
-    for (var i = 0; i < nCoins; i++) {
-        var c = [];
-        for (var j = 0; j < 2; j++) {
-            if ((i + j) % 2 !== 0) {
-                c.push(
-                    new Collectable(canyons[4].x - floor(nCoins / 2) * collSize + i * collSize + 15, platforms[4].walkLevel - 20 - 40 - (i % 2) * collSize, collSize, "coin")
-                );
-            }
+    for (var i = 0; i < 2; i++) {
+        var p = [];
+        for (var j = 0; j < nCoins; j++) {
+            p.push((i + j) % 2 !== 0);
         }
-        collectables.push(c);
+        pattern.push(p);
     }
+    var c5 = collectables2DArray(2, nCoins, canyons[4].x, platforms[4].walkLevel - 50, 30, "coin", pattern);
+    collectables = collectables.concat(c5);
+
     // ==================================================================== //
 
     rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");

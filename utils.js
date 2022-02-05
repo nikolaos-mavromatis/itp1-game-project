@@ -30,8 +30,7 @@ function drawPauseButton(x, y, size) {
 
 }
 
-// TODO: add pattern argument
-function collectables2DArray(rows, cols, x, y, size, type) {
+function collectables2DArray(rows, cols, x, y, size, type, pattern = null) {
     var collectables = [];
 
     startX = x - floor(cols / 2) * size
@@ -42,9 +41,18 @@ function collectables2DArray(rows, cols, x, y, size, type) {
     for (var i = 0; i < cols; i++) {
         var c = [];
         for (var j = 0; j < rows; j++) {
-            c.push(
-                new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type)
-            );
+            if (pattern) {
+                if (pattern[j][i]) {
+                    c.push(
+                        new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type)
+                    );
+                }
+            }
+            else {
+                c.push(
+                    new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type)
+                );
+            }
         }
         collectables.push(c);
     }
