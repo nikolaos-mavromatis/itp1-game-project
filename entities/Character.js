@@ -320,7 +320,7 @@ class Character {
             lives -= 1;
             if (lives > 0) {
                 loseLifeSound.play();
-                startGame();
+                game = new Game(level);
             }
             else {
                 gameOverSound.play();
