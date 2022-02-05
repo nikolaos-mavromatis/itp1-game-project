@@ -75,8 +75,7 @@ var levels = [
             // ==================================================================== //
             rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");
 
-            // flagpole = new Flagpole(3946, floorPos_y);
-            flagpole = new Flagpole(500, floorPos_y);
+            flagpole = new Flagpole(3946, floorPos_y);
         },
         render: function () {
             // fill the sky blue
