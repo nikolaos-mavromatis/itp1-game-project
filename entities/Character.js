@@ -245,6 +245,15 @@ class Character {
 
                     if (platforms[i].isMoving) {
                         this.x += platforms[i].inc;
+
+                        if (character.x >= width * 0.8) {
+                            this.x -= platforms[i].inc
+                            scrollPos -= platforms[i].inc;
+                        }
+                        if (character.x <= width * 0.2) {
+                            this.x -= platforms[i].inc;
+                            scrollPos -= platforms[i].inc;
+                        }
                     }
 
                     break;

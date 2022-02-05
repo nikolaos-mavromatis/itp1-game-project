@@ -5,6 +5,8 @@ The Game Project 6 - Adding game mechanics
 Week 14
 
 */
+var LIVES = 1;
+
 var gameChar_x;
 var gameChar_y;
 var floorPos_y;
@@ -57,7 +59,7 @@ function preload() {
     levelCompleteSound.setVolume(0.1);
 
     gameOverSound = loadSound("./assets/sounds/gameOver.wav");
-    gameOverSound.setVolume(0.15)
+    gameOverSound.setVolume(0.25)
 }
 
 function setup() {
@@ -65,7 +67,7 @@ function setup() {
 
     backgroundMusic.loop();
 
-    lives = 3;
+    lives = LIVES;
     floorPos_y = height * 3 / 4;
     angle = 0;
 
@@ -150,7 +152,7 @@ function keyReleased() {
 
     if (keyCode == 32 && (flagpole.isReached || lives < 1)) {
         startGame();
-        lives = 3;
+        lives = LIVES;
     }
 }
 
@@ -366,7 +368,7 @@ function startGame() {
     nCoins = 8;
     for (var i = 0; i < nCoins; i++) {
         for (var j = 0; j < 2; j++) {
-            if (i + j % 2 != 0) {
+            if ((i + j) % 2 !== 0) {
                 collectables.push(
                     new Collectable(canyons[4].x - floor(nCoins / 2) * collSize + i * collSize + 15, platforms[4].walkLevel - 20 - 40 - (i % 2) * collSize, collSize, "coin")
                 )
