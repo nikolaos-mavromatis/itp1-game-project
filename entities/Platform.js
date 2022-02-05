@@ -81,7 +81,7 @@ class Platform {
 
     checkContact(x, y) {
         if (x > this.currentX - this.w / 2 && x < this.currentX + this.w / 2) {
-            var d = character.y - this.walkLevel
+            var d = y - this.walkLevel
             if (d >= 0 && d < 5) {
                 return true;
             }
