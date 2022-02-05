@@ -8,6 +8,7 @@ class Flagpole {
     }
 
     render() {
+        // TODO: change width/height to be relative to size
         let w = 0.02 * width;
         let h = 0.5 * height;
         let baseW = w;
