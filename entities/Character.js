@@ -215,12 +215,18 @@ class Character {
     move() {
         // Logic to make the game character move or the background scroll.
         if (this.isLeft) {
+
             if (this.x > width * 0.2) {
                 this.x -= 5;
             }
             else {
                 scrollPos += 5;
             }
+
+        }
+
+        if (gameChar_world_x <= 0) {
+            this.isLeft = false;
         }
 
         if (this.isRight) {
