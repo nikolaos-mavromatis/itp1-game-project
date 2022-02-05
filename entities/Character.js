@@ -1,5 +1,3 @@
-var lastX;
-
 class Character {
     /*
     Draws the different states of the character.
