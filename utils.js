@@ -29,3 +29,26 @@ function drawPauseButton(x, y, size) {
     rect(x + 1.5 * barW, y, barW, size, 20);
 
 }
+
+// TODO: add pattern argument
+function collectables2DArray(rows, cols, x, y, size, type) {
+    var collectables = [];
+
+    startX = x - floor(cols / 2) * size
+    if (cols % 2 == 0) {
+        startX += size / 2;
+    }
+
+    for (var i = 0; i < cols; i++) {
+        var c = [];
+        for (var j = 0; j < rows; j++) {
+            c.push(
+                new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type)
+            );
+        }
+        collectables.push(c);
+    }
+
+    return collectables;
+}
+

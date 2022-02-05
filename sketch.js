@@ -160,8 +160,6 @@ function drawEnemies() {
     for (var i = 0; i < enemies.length; i++) {
         enemies[i].draw();
     }
-
-
 }
 
 function drawTrees() {
@@ -197,9 +195,11 @@ function drawPlatforms() {
 
 function drawCollectables() {
     for (var i = 0; i < collectables.length; i++) {
-        if (!collectables[i].isFound) {
-            collectables[i].draw();
-            collectables[i].checkCollectable();
+        for (var j = 0; j < collectables[i].length; j++) {
+            if (!collectables[i][j].isFound) {
+                collectables[i][j].draw();
+                collectables[i][j].checkCollectable();
+            }
         }
     }
 
@@ -339,42 +339,29 @@ function startGame() {
         new Enemy(2000, floorPos_y, 250),
     ];
 
-    collectables = [
-        new Collectable(platforms[0].x, platforms[0].walkLevel - 20, 30, "coin"),
-        new Collectable(1700, floorPos_y - 20, 30, "diamond"),
-    ]
-
+    collectables = [];
+    c1 = collectables2DArray(1, 1, platforms[0].x, platforms[0].walkLevel, 30, "coin");
+    c2 = collectables2DArray(1, floor(platforms[2].w / 30), platforms[2].x, platforms[2].walkLevel, 30, "coin");
+    c3 = collectables2DArray(1, 3, platforms[3].x, platforms[3].walkLevel - 70, 30, "coin");
+    c4 = collectables2DArray(1, 1, 1700, floorPos_y, 30, "diamond");
+    collectables = collectables.concat(c1, c2, c3, c4);
 
     // ==================================================================== //
-    // TODO: make function: treat all colllectables as 2D arrays
+    // TODO: use utils' collectables2DArray with pattern
     var collSize = 30;
-
-    var nCoins = floor(platforms[2].w / collSize)
+    var nCoins = 8;
     for (var i = 0; i < nCoins; i++) {
-        collectables.push(
-            new Collectable(platforms[2].x - floor(nCoins / 2) * collSize + i * collSize + 15, platforms[2].walkLevel - 20, collSize, "coin")
-        )
-    }
-
-    var nCoins = floor(platforms[3].w / collSize) // if not provided fill in the whole width
-    nCoins = 3;
-    for (var i = 0; i < nCoins; i++) {
-        collectables.push(
-            new Collectable(platforms[3].x - floor(nCoins / 2) * collSize + i * collSize, platforms[3].walkLevel - 20 - 70, collSize, "coin")
-        )
-    }
-
-    // ==================================================================== //
-    nCoins = 8;
-    for (var i = 0; i < nCoins; i++) {
+        var c = [];
         for (var j = 0; j < 2; j++) {
             if ((i + j) % 2 !== 0) {
-                collectables.push(
+                c.push(
                     new Collectable(canyons[4].x - floor(nCoins / 2) * collSize + i * collSize + 15, platforms[4].walkLevel - 20 - 40 - (i % 2) * collSize, collSize, "coin")
-                )
+                );
             }
         }
+        collectables.push(c);
     }
+    // ==================================================================== //
 
     rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");
 
