@@ -340,24 +340,12 @@ function startGame() {
     ];
 
     collectables = [];
-<<<<<<< HEAD
     c1 = collectables2DArray(1, 1, platforms[0].x, platforms[0].walkLevel, 30, "coin");
     c2 = collectables2DArray(1, floor(platforms[2].w / 30), platforms[2].x, platforms[2].walkLevel, 30, "coin");
     c3 = collectables2DArray(1, 3, platforms[3].x, platforms[3].walkLevel - 70, 30, "coin");
     c4 = collectables2DArray(1, 1, 1700, floorPos_y, 30, "diamond");
     collectables = collectables.concat(c1, c2, c3, c4);
 
-=======
-
-
-    c1 = collectables2DArray(1, 1, platforms[0].x, platforms[0].walkLevel, 30, "coin");
-    c2 = collectables2DArray(1, floor(platforms[2].w / 30), platforms[2].x, platforms[2].walkLevel, 30, "coin");
-    c3 = collectables2DArray(1, 3, platforms[3].x, platforms[3].walkLevel - 70, 30, "coin");
-    c4 = collectables2DArray(1, 1, 1700, floorPos_y, 30, "diamond");
-
-    collectables = collectables.concat(c1, c2, c3, c4);
-
->>>>>>> cb5a8c9dce19ac5ffdd8076cc0384bc4647c7ffa
     // ==================================================================== //
     // TODO: use utils' collectables2DArray with pattern
     var collSize = 30;
