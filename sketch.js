@@ -24,6 +24,8 @@ var rotatingCollectable;
 
 var game_score;
 var lives;
+var level;
+var levelBadge;
 
 var font;
 var jumpSound;
@@ -34,6 +36,7 @@ var levelCompleteSound;
 var gameOverSound;
 
 var angle;
+
 
 
 function preload() {
@@ -70,6 +73,33 @@ function setup() {
     lives = LIVES;
     floorPos_y = height * 3 / 4;
     angle = 0;
+
+    levelBadge = {
+        points: [],
+        size: 25,
+        setup: function () {
+            // console.log("setup");
+            var incr = 2 * PI / 36;
+            for (var i = 0; i < 36; i++) {
+                var v = createVector(0, random(0.75, 1));
+                var a = incr * i;
+                v.rotate(a);
+                this.points.push(v);
+            }
+        },
+        draw: function () {
+
+            fill(255, 168, 0);
+
+            beginShape();
+            for (var i = 0; i < this.points.length; i++) {
+                var v = p5.Vector.mult(this.points[i], this.size);
+
+                curveVertex(v.x, v.y);
+            }
+            endShape();
+        },
+    }
 
     startGame();
 }
@@ -150,7 +180,13 @@ function keyReleased() {
         character.keyReleasedInteraction();
     }
 
-    if (keyCode == 32 && (flagpole.isReached || lives < 1)) {
+    if (keyCode == 32 && flagpole.isReached) {
+        level += 1;
+        startGame();
+        lives = LIVES;
+    }
+
+    if (keyCode == 32 && lives < 1) {
         startGame();
         lives = LIVES;
     }
@@ -226,14 +262,25 @@ function displayScoreAndLives() {
     var rightMargin = 0.01 * width
     var fontSize = 30;
 
-    function redCrossLife(x, y, size, alive) {
+    // level banner
+    push();
+    translate(30, 30);
+    levelBadge.draw();
+    textFont(font);
+    textAlign(CENTER, CENTER);
+    fill(173, 116, 0);
+    text(level, 0, 0);
+    pop();
+
+
+    function redCrossLife(x, y, size) {
         var shortSide = size / 3;
 
         fill(255, 168, 0);
         //vertical bar
-        rect(x - shortSide / 2, y - size / 2, shortSide, size);
+        rect(x - shortSide / 2, y - size / 2, shortSide, size, 2);
         //horizontal
-        rect(x - size / 2, y - shortSide / 2, size, shortSide);
+        rect(x - size / 2, y - shortSide / 2, size, shortSide, 2);
 
     }
 
@@ -274,7 +321,7 @@ function displayLevelComplete() {
     textFont(font);
     textAlign(CENTER, BOTTOM);
     fill(255, 168, 0);
-    text("LEVEL COMPLETE!", width / 2, 0.98 * height / 2);
+    text("LEVEL " + level + " COMPLETE!", width / 2, 0.98 * height / 2);
     textSize(30);
     textAlign(CENTER, TOP);
     text("Press SPACE to continue", width / 2, 1.02 * height / 2);
@@ -284,6 +331,9 @@ function startGame() {
     if (backgroundMusic.isPaused()) {
         backgroundMusic.play();
     }
+
+    level = 1;
+    levelBadge.setup();
 
     game_score = 0;
     gameChar_x = 0.2 * width;
