@@ -2,7 +2,6 @@ var levelBadge = {
     points: [],
     size: 25,
     setup: function () {
-        // console.log("setup");
         var incr = 2 * PI / 36;
         for (var i = 0; i < 36; i++) {
             var v = createVector(0, random(0.75, 1));
@@ -12,18 +11,16 @@ var levelBadge = {
         }
     },
     draw: function () {
-
         fill(255, 168, 0);
-
         beginShape();
         for (var i = 0; i < this.points.length; i++) {
             var v = p5.Vector.mult(this.points[i], this.size);
-
             curveVertex(v.x, v.y);
         }
         endShape();
     },
 }
+
 
 class Game {
     constructor(level) {
@@ -46,7 +43,10 @@ class Game {
     }
 
     play() {
-        this.world.render();
+        if (!this.world.isCompleted) {
+            this.world.render();
+        }
+        // else { clear(); }
 
         // Below statements (if true) should happen before the player has the chance to move
         if (lives < 1) {
@@ -60,6 +60,7 @@ class Game {
             character.y = min(character.y + 1, floorPos_y);
             return;
         }
+
         //////// Game character logic ///////
         // Logic to move
 

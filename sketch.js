@@ -101,6 +101,12 @@ function keyReleased() {
     if (keyCode == 32 && flagpole.isReached) {
         level += 1;
         game = new Game(level);
+        lives = LIVES
+    }
+
+    if (keyCode == 32 && game.world.isCompleted) {
+        level = 1;
+        game = new Game(level);
         lives = LIVES;
     }
 
