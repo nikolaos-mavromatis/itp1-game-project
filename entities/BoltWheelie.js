@@ -1,6 +1,6 @@
 var r;
 var wheelD;
-var angle = 0;
+var rot = 0;
 
 class BoltWheelie {
     constructor(x, y, size, range) {
@@ -39,7 +39,7 @@ class BoltWheelie {
     }
 
     checkContact(x, y) {
-        if (dist(this.currentX, this.y, x, y) <= this.size) {
+        if (dist(this.currentX, this.y, x, y) <= 2 * r) {
             return true;
         }
 
@@ -71,6 +71,7 @@ class BoltWheelie {
 
     #drawEye() {
         fill(255);
+        // contour
         ellipse(
             this.currentX + (0.5 * r) * this.direction,
             this.y - (wheelD / 2 + r + r / 3),
@@ -78,12 +79,32 @@ class BoltWheelie {
             0.55 * r
         );
         fill(0);
+        // pupil
         ellipse(
             this.currentX + (0.5 * r) * this.direction + 0.15 * 0.55 * r * this.direction,
             this.y - (wheelD / 2 + r + r / 3) + 0.1 * 0.55 * r,
             0.4 * 0.55 * r,
             0.5 * 0.55 * r
         );
+        // eyebrow
+        beginShape();
+        vertex(
+            this.currentX + 0.3 * r * this.direction,
+            this.y - wheelD / 2 - r - 0.8 * r
+        );
+        vertex(
+            this.currentX + 0.79 * r * this.direction,
+            this.y - wheelD / 2 - r - 0.5 * r
+        );
+        vertex(
+            this.currentX + 0.8 * r * this.direction,
+            this.y - wheelD / 2 - r - 0.4 * r
+        );
+        vertex(
+            this.currentX + 0.25 * r * this.direction,
+            this.y - wheelD / 2 - r - 0.55 * r
+        );
+        endShape();
     }
 
     #drawMouth() {
@@ -123,11 +144,11 @@ class BoltWheelie {
 
         push();
         translate(x, y);
-        rotate(angle);
+        rotate(rot);
         this.#drawCross(0, 0, 0.6 * size, 20);
-        angle += 0.02 * direction;
+        rot += 0.02 * direction;
         if (direction < 0) {
-            angle -= 0.02;;
+            rot -= 0.02;;
         }
         pop();
     }

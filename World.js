@@ -1,11 +1,11 @@
 var idx;
 var angle = 0;
 
-
 class World {
     constructor(level) {
         this.levels = [
             {
+                // level 1
                 setup: function () {
                     character = new Character(0.2 * width, floorPos_y);
 
@@ -117,7 +117,7 @@ class World {
                     character.draw();
                 }
             },
-            //level 2 just for confirmation
+            // level 2 just for confirmation
             {
                 setup: function () {
                     character = new Character(0.2 * width, floorPos_y);
