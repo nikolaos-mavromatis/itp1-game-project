@@ -58,6 +58,7 @@ class Game {
             this.displayLevelComplete();
             // bring back to the ground if level completed while jumping
             character.y = min(character.y + 1, floorPos_y);
+            character.thruster.origin.y = min(character.thruster.origin.y + 1, floorPos_y);
             return;
         }
 
