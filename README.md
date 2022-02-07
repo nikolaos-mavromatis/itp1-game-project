@@ -1,6 +1,9 @@
 # itp1-game-project
 
 ## __Credits__
+### __Gradient Sky__
+Kazuki Umeda. (2021, December 23). _Easy gradient effect - p5.js tutorial_ [Video]. YouTube. https://www.youtube.com/watch?v=-MUOweQ6wac
+
 ### __Sounds__
 All sounds are downloaded from https://freesound.org/. Full list to be added later. 
 
