@@ -91,19 +91,20 @@ class BubbleMan {
     move() {
         // Logic to make the game character move or the background scroll.
         if (this.isLeft) {
-
             if (this.x > width * 0.2) {
                 this.x -= this.velocity;
                 this.thruster.origin.x -= this.velocity;
 
                 for (var i = 0; i < this.thruster.particles.length; i++) {
-                    this.thruster.particles[i].position.x -= this.velocity;
+                    this.thruster.particles[i].position.x -= this.velocity / 10;
                 }
             }
             else {
+                for (var i = 0; i < this.thruster.particles.length; i++) {
+                    this.thruster.particles[i].position.x += this.velocity;
+                }
                 scrollPos += 5;
             }
-
         }
 
         if (gameChar_world_x <= 0) {
@@ -115,10 +116,13 @@ class BubbleMan {
                 this.x += this.velocity;
                 this.thruster.origin.x += this.velocity;
                 for (var i = 0; i < this.thruster.particles.length; i++) {
-                    this.thruster.particles[i].position.x += this.velocity;
+                    this.thruster.particles[i].position.x += this.velocity / 10;
                 }
             }
             else {
+                for (var i = 0; i < this.thruster.particles.length; i++) {
+                    this.thruster.particles[i].position.x -= this.velocity;
+                }
                 scrollPos -= 5; // negative for moving against the background
             }
         }
@@ -135,13 +139,11 @@ class BubbleMan {
                     // move character with the moving platform
                     if (platforms[i].isMoving) {
                         this.x += platforms[i].inc;
+                        this.thruster.origin.x += platforms[i].inc;
 
-                        if (character.x >= width * 0.8) {
+                        if (character.x <= width * 0.2 || character.x >= width * 0.8) {
                             this.x -= platforms[i].inc
-                            scrollPos -= platforms[i].inc;
-                        }
-                        if (character.x <= width * 0.2) {
-                            this.x -= platforms[i].inc;
+                            this.thruster.origin.x -= platforms[i].inc
                             scrollPos -= platforms[i].inc;
                         }
                     }
@@ -162,7 +164,6 @@ class BubbleMan {
 
         if (this.isPlummeting) {
             this.y += this.gravity;
-            this.thruster.origin.y += this.gravity;
 
             this.isLeft = false;
             this.isRight = false;
