@@ -7,6 +7,8 @@ class World {
             {
                 // level 1
                 setup: function () {
+                    sky = new NightSky(500);
+
                     // character = new Character(0.2 * width, floorPos_y);
                     character = new BubbleMan(0.2 * width, floorPos_y, 80);
 
@@ -86,8 +88,7 @@ class World {
                 render: function () {
                     // fill the sky blue
                     // TODO:dim the sky the closer the character gets to the flagpole
-                    // background(100, 155, 255); //original
-                    background(25, 25, 112);
+                    sky.render();
 
                     // draw some green ground
                     // fill(0, 155, 0); // original
