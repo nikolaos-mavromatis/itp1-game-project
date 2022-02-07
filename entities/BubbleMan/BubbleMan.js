@@ -3,7 +3,7 @@ var suitColor;
 
 class BubbleMan {
     constructor(x, y, size) {
-        suitColor = color(119, 136, 153);
+        suitColor = color(176, 196, 222);
 
         this.x = x;
         this.y = y - 100;
@@ -81,9 +81,6 @@ class BubbleMan {
         rotate(PI / 15);
         ellipse(0, 0, headD / 2.5, headD / 4.2);
         pop();
-
-
-
 
         // draw helmet glass
         fill(70, 130, 180, 150);
