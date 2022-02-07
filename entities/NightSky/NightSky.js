@@ -47,7 +47,7 @@ class Star {
         fill(255, 215, 0);
         this.update();
         if (this.isFalling) {
-            let distanceMapped = map(this.distanceFallen, 0, this.maxFallingDistance, 255, 50);
+            let distanceMapped = map(this.distanceFallen, 0, this.maxFallingDistance, 255, 0);
             stroke(255, 215, 0, distanceMapped);
             strokeWeight(this.size);
             point(this.position.x, this.position.y);
