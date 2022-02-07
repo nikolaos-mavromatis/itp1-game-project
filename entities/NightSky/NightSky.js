@@ -13,7 +13,13 @@ class NightSky {
     }
 
     render() {
-        background(25, 25, 112);
+        // background(25, 25, 112); // original midnight blue
+        let gradient = drawingContext.createLinearGradient(width / 2, height + 200, width / 2, 150);
+        gradient.addColorStop(0, color(255, 215, 255, 255));
+        gradient.addColorStop(1, color(25, 25, 112));
+        drawingContext.fillStyle = gradient;
+
+        rect(0, 0, width, floorPos_y);
 
         for (var i = this.n - 1; i >= 0; i--) {
             this.stars[i].draw();
@@ -45,6 +51,7 @@ class Star {
 
     draw() {
         fill(255, 215, 0);
+
         this.update();
         if (this.isFalling) {
             let distanceMapped = map(this.distanceFallen, 0, this.maxFallingDistance, 255, 0);
