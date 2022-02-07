@@ -55,7 +55,8 @@ class Collectable {
         endShape();
 
         //lines
-        stroke(160);
+        stroke(210);
+        strokeWeight(1);
         beginShape(LINES);
         vertex(this.x - this.size / 2, this.y - 0.75 * this.size / 2);
         vertex(this.x - 0.4 * this.size / 2, this.y - 0.6 * this.size / 2);
