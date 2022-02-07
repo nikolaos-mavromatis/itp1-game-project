@@ -125,6 +125,11 @@ class Game {
         coin.draw();
 
 
+        // display progress
+        fill(0, 250, 154);
+        rect(0, height - 10, map(flagpole.x - gameChar_world_x, flagpole.x, 0, 0, width), 10);
+
+
     }
 
     displayGameOver() {
