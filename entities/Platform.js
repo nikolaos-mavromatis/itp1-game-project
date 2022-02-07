@@ -47,7 +47,7 @@ class Platform {
             alpha
         );
         // draw grass
-        fill(0, 155, 0);
+        fill(70, 130, 180);
         var grassH = this.h / 2.5
         rect(
             this.currentX - this.w / 2,
