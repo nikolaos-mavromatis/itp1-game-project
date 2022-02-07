@@ -1,4 +1,4 @@
-var thruster;
+// var thruster;
 var suitColor;
 
 class BubbleMan {
@@ -13,19 +13,20 @@ class BubbleMan {
         this.direction = 1;
         this.velocity = 5;
         this.gravity = 3;
+        this.verticalJump = 100;
 
         this.isLeft = false;
-        this.isRigth = false;
+        this.isRight = false;
         this.isFalling = true;
         this.isPlummeting = false;
 
-        thruster = new ParticleSystem(createVector(this.x, this.y), this.h / 2);
+        this.thruster = new ParticleSystem(createVector(this.x, this.y), this.h / 2);
     }
 
     draw() {
         if (!this.isPlummeting) {
-            thruster.addParticle();
-            thruster.run();
+            this.thruster.addParticle();
+            this.thruster.run();
         }
         this.stand();
         // this.#drawGrid();
@@ -37,10 +38,10 @@ class BubbleMan {
 
             if (this.x > width * 0.2) {
                 this.x -= this.velocity;
-                thruster.origin.x -= this.velocity;
+                this.thruster.origin.x -= this.velocity;
 
-                for (var i = 0; i < thruster.particles.length; i++) {
-                    thruster.particles[i].position.x -= this.velocity;
+                for (var i = 0; i < this.thruster.particles.length; i++) {
+                    this.thruster.particles[i].position.x -= this.velocity;
                 }
             }
             else {
@@ -56,9 +57,9 @@ class BubbleMan {
         if (this.isRight) {
             if (this.x < width * 0.8) {
                 this.x += this.velocity;
-                thruster.origin.x += this.velocity;
-                for (var i = 0; i < thruster.particles.length; i++) {
-                    thruster.particles[i].position.x += this.velocity;
+                this.thruster.origin.x += this.velocity;
+                for (var i = 0; i < this.thruster.particles.length; i++) {
+                    this.thruster.particles[i].position.x += this.velocity;
                 }
             }
             else {
@@ -75,6 +76,7 @@ class BubbleMan {
                 if (this.isOnPlatform) {
                     this.isFalling = false;
 
+                    // move character with the moving platform
                     if (platforms[i].isMoving) {
                         this.x += platforms[i].inc;
 
@@ -94,7 +96,7 @@ class BubbleMan {
 
             if (!this.isOnPlatform) {
                 this.y = min(floorPos_y, this.y + this.gravity) // min was need because of the multiples
-                thruster.origin.y += this.gravity; // min was need because of the multiples
+                this.thruster.origin.y = min(floorPos_y, this.thruster.origin.y + this.gravity); // min was need because of the multiples
                 this.isFalling = true;
             }
         }
@@ -104,7 +106,7 @@ class BubbleMan {
 
         if (this.isPlummeting) {
             this.y += this.gravity;
-            thruster.origin.y += this.gravity;
+            this.thruster.origin.y += this.gravity;
 
             this.isLeft = false;
             this.isRight = false;
@@ -126,11 +128,8 @@ class BubbleMan {
         if ((key == 'W' || keyCode == 32) && !flagpole.isReached && !this.isPlummeting) {
             if (!this.isFalling || this.isOnPlatform) {
                 jumpSound.play();
-                this.y -= 100;
-                thruster.origin.y -= 100;
-                for (var i = 0; i < thruster.particles.length; i++) {
-                    thruster.particles[i].position.acceleration *= 0.5;
-                }
+                this.y -= this.verticalJump;
+                this.thruster.origin.y -= this.verticalJump;
             }
         }
     }
@@ -144,7 +143,6 @@ class BubbleMan {
         if (key == 'D' || keyCode == 39) {
             this.isRight = false;
         }
-
     }
 
     checkPlayerDie() {
@@ -156,7 +154,7 @@ class BubbleMan {
             }
         }
 
-        if (this.y > height + 100 || this.hitEnemy) {
+        if (this.y > height + this.h || this.hitEnemy) {
             lives -= 1;
             if (lives > 0) {
                 loseLifeSound.play();
