@@ -109,7 +109,7 @@ class Game {
 
         // Display red crosses for lives
         for (var i = 0; i < lives; i++) {
-            redCrossLife(width - rightMargin - 15 - i * (30 + rightMargin), topMargin + 15, 30, true);
+            character.drawLife(width - rightMargin - 15 - i * (30 + rightMargin), topMargin + 15, 30);
         }
 
 

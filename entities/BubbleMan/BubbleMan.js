@@ -32,6 +32,65 @@ class BubbleMan {
         // this.#drawGrid();
     }
 
+    drawLife(x, y, size) {
+        // draw white helmet lining under the chin
+        stroke(255, 255, 255, 130);
+        strokeWeight(1);
+        noFill();
+        ellipse(x, y + 1, size - 4, size - 1);
+        noStroke();
+        // draw helmet
+        fill(suitColor);
+        ellipse(x, y, size, size);
+
+        //draw head
+        fill(0);
+        let headD = size / 1.5;
+        let headCy = y + headD / 5 - 3;
+        ellipse(x, headCy, headD, headD);
+
+        // draw eyes
+        fill(255);
+        let eyeline = headCy - headD / 8;
+        let leftEyeCx = x - headD / 6;
+        let leftEyeW = headD / 5;
+        let leftEyeH = headD / 15;
+        rect(leftEyeCx - leftEyeW / 2, eyeline - leftEyeH / 2, leftEyeW, leftEyeH, 10);
+
+        let rightEyeCx = x + headD / 6;
+        let rightEyeW = headD / 3.5;
+        let rightEyeH = headD / 3;
+        ellipse(rightEyeCx, eyeline, rightEyeW, rightEyeH);
+
+        // draw eyeball
+        fill(0);
+        let rand = size / 150000
+        ellipse(
+            rightEyeCx + random(-rand, rand) * rightEyeCx,
+            eyeline + headD / 20 + random(-rand, rand) * eyeline,
+            rightEyeW / 1.5,
+            rightEyeW / 1.5
+        );
+
+        // draw mouth
+        fill(255);
+        ellipse(x, headCy + headD / 6, headD / 3, headD / 4);
+        fill(0);
+        push();
+        translate(x, headCy + headD / 9);
+        rotate(PI / 15);
+        ellipse(0, 0, headD / 2.5, headD / 4.2);
+        pop();
+
+
+
+
+        // draw helmet glass
+        fill(70, 130, 180, 150);
+        let d2 = 0.85 * size;
+        ellipse(x, y, d2, d2);
+    }
+
     move() {
         // Logic to make the game character move or the background scroll.
         if (this.isLeft) {
