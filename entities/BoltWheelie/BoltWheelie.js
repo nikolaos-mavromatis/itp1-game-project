@@ -109,7 +109,7 @@ class BoltWheelie {
 
     #drawMouth() {
         stroke(0);
-        // strokeWeight(1);
+        strokeWeight(1);
         line(
             this.currentX + 0.3 * r * this.direction + 0.6 * r * this.direction,
             this.y - wheelD / 2 - r + 0.25 * r,
