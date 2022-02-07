@@ -9,6 +9,7 @@ var LIVES = 3;
 
 var game;
 var world;
+var sky;
 
 var gameChar_x;
 var gameChar_world_x;
