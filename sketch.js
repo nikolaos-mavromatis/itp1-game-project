@@ -54,7 +54,7 @@ function preload() {
     jumpSound.setVolume(0.1);
 
     backgroundMusic = loadSound('assets/sounds/backgroundMusic.wav');
-    backgroundMusic.setVolume(0.03);
+    backgroundMusic.setVolume(0.01);
 
     coinCollectedSound = loadSound("assets/sounds/coinCollected.wav");
     coinCollectedSound.setVolume(0.05);
