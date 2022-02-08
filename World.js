@@ -15,6 +15,8 @@ class World {
                     // World elements
                     trees = [
                         new Tree(350, floorPos_y, 170),
+                        new Tree(1500, floorPos_y, 190),
+                        new Tree(2200, floorPos_y, 190),
                     ];
 
                     clouds = [
