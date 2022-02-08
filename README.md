@@ -1,9 +1,9 @@
 # itp1-game-project
-## __Project Board__  
-📋 https://github.com/nikolaos-mavromatis/itp1-game-project/projects/1
+## 📋 __Project Board__  
+https://github.com/nikolaos-mavromatis/itp1-game-project/projects/1
 
-## __GitHub Pages__  
-🎮 https://nikolaos-mavromatis.github.io/itp1-game-project/
+## 🎮 __GitHub Pages__  
+https://nikolaos-mavromatis.github.io/itp1-game-project/
 
 ## 🥇 __Credits__
 ### __Gradient Sky__
