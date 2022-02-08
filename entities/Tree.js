@@ -16,7 +16,8 @@ class Tree {
 
     draw() {
         //trunk
-        fill(160, 85, 45);
+        // fill(160, 85, 45);
+        fill(205, 133, 63);
         rect(
             this.x - this.trunk_w / 2,
             this.y - this.trunk_h,
@@ -24,7 +25,8 @@ class Tree {
             this.trunk_h
         );
         // canopy
-        fill(0, 100, 0);
+        // fill(0, 100, 0);
+        fill(240, 128, 128);
         triangle(
             this.x - this.w / 2,
             this.y - this.trunk_h,
