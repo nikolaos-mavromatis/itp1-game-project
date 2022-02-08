@@ -8,7 +8,8 @@ https://github.com/nikolaos-mavromatis/itp1-game-project/projects/1
 https://nikolaos-mavromatis.github.io/itp1-game-project/
 
 ## 🥇 __Credits__
-### __Gradient Sky__
+### __Graphics__
+#### __Gradient Sky__
 Kazuki Umeda. (2021, December 23). _Easy gradient effect - p5.js tutorial_ [Video]. YouTube. https://www.youtube.com/watch?v=-MUOweQ6wac
 
 ### __Sounds__
