@@ -5,6 +5,7 @@ _(October 2021 - March 2022)_
 https://github.com/nikolaos-mavromatis/itp1-game-project/projects/1
 
 ## 🎮 __GitHub Pages__  
+The game is accessible via GitHub pages.  
 https://nikolaos-mavromatis.github.io/itp1-game-project/
 
 ## 🌍 __World Elements__  
