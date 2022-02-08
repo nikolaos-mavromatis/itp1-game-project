@@ -1,4 +1,6 @@
-# itp1-game-project
+# CM1005 ITP1 – Game Project  
+_University of London_  
+_(October 2021 - March 2022)_
 ## 📋 __Project Board__  
 https://github.com/nikolaos-mavromatis/itp1-game-project/projects/1
 
