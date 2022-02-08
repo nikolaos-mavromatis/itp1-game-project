@@ -204,10 +204,12 @@ class BubbleMan {
 
     checkPlayerDie() {
         for (var i = 0; i < enemies.length; i++) {
-            this.hitEnemy = enemies[i].checkContact(gameChar_world_x, this.y);
+            if (!enemies[i].isDead) {
+                this.hitEnemy = enemies[i].checkContact(gameChar_world_x, this.y);
 
-            if (this.hitEnemy) {
-                break;
+                if (this.hitEnemy) {
+                    break;
+                }
             }
         }
 

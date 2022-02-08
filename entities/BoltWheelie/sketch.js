@@ -4,7 +4,7 @@ function setup() {
     createCanvas(400, 400);
     noStroke();
 
-    enemy = new BoltWheelie(width / 4, 0.9 * height, 50, 200);
+    enemy = new BoltWheelie(width / 4, 0.9 * height, 20, 200);
 }
 
 function draw() {
