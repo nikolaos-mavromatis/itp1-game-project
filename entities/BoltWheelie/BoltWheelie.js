@@ -9,6 +9,7 @@ class BoltWheelie {
         this.size = size;
         this.range = range;
 
+        this.isDead = false;
         this.currentX = x;
         this.direction = -1;
         this.velocity = 1;
@@ -44,6 +45,19 @@ class BoltWheelie {
         }
 
         return false;
+    }
+
+    checkDead(x, y) {
+        if (
+            dist(x, y, this.currentX, this.y) < 1.5 * this.size &&
+            (
+                (x > this.currentX - this.size / 2) &&
+                (x < this.currentX + this.size / 2)
+            )
+        ) {
+            this.isDead = true;
+            character.y -= 10;
+        }
     }
 
     #drawEnemy() {

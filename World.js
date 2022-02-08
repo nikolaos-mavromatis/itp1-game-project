@@ -54,10 +54,10 @@ class World {
                     ];
 
                     enemies = [
-                        new BoltWheelie(420, floorPos_y, 40, 150),
-                        new BoltWheelie(900, floorPos_y, 40, 150),
-                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 40, platforms[3].w),
-                        new BoltWheelie(2000, floorPos_y, 40, 250),
+                        new BoltWheelie(420, floorPos_y, 30, 150),
+                        new BoltWheelie(900, floorPos_y, 30, 150),
+                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 30, platforms[3].w),
+                        new BoltWheelie(2000, floorPos_y, 30, 250),
                     ];
 
                     collectables = [];
@@ -248,7 +248,10 @@ class World {
 
 function drawEnemies() {
     for (var i = 0; i < enemies.length; i++) {
-        enemies[i].draw();
+        if (!enemies[i].isDead) {
+            enemies[i].draw();
+            enemies[i].checkDead(gameChar_world_x, character.y);
+        }
     }
 }
 
