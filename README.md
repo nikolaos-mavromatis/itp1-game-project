@@ -18,6 +18,10 @@ Each level is 4096x576px.
 ![Level1](https://user-images.githubusercontent.com/17873367/153066635-7138da3c-1fbf-4712-8cf0-d1e3f57e85f5.png)
 
 ## 🥇 __Credits__
+### __Text Font__  
+"Luckiest Guy" by Astigmatic. Available in Google Fonts.  
+LICENSED UNDER APACHE LICENSE, VERSION 2.0  
+
 ### __Graphics__
 #### __Gradient Sky__
 Kazuki Umeda. (2021, December 23). _Easy gradient effect - p5.js tutorial_ [Video]. YouTube. https://www.youtube.com/watch?v=-MUOweQ6wac
