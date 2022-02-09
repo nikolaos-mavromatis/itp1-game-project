@@ -56,10 +56,10 @@ class World {
                     ];
 
                     enemies = [
-                        new BoltWheelie(420, floorPos_y, 30, 150),
-                        new BoltWheelie(900, floorPos_y, 30, 150),
-                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 30, platforms[3].w),
-                        new BoltWheelie(2000, floorPos_y, 30, 250),
+                        new BoltWheelie(420, floorPos_y, 35, 150),
+                        new BoltWheelie(900, floorPos_y, 35, 150),
+                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 35, platforms[3].w),
+                        new BoltWheelie(2000, floorPos_y, 35, 250),
                     ];
 
                     collectables = [];
@@ -91,15 +91,12 @@ class World {
                 render: function () {
                     sky.render();
 
-                    // draw some green ground
-                    // fill(0, 155, 0); // original
-                    fill(70, 130, 180);
-                    rect(0, floorPos_y, width, height / 4);
-
                     push();
                     translate(scrollPos, 0);
 
-                    // Draw world elements
+                    fill(70, 130, 180);
+                    rect(0, floorPos_y, this.length, height / 4)
+
                     drawMountains();
 
                     drawClouds();
@@ -118,7 +115,6 @@ class World {
 
                     pop();
 
-                    // Draw the game character
                     character.draw();
                 }
             },
@@ -147,7 +143,6 @@ class World {
                     ];
 
                     mountains = [
-                        // new Mountain(x = 100, y = floorPos_y, size = 400, dark = false),
                         new Mountain(800, floorPos_y, 450, false),
                         new Mountain(520, floorPos_y, 350, true),
                         new Mountain(1100, floorPos_y, 350, true),
@@ -177,9 +172,9 @@ class World {
                     ];
 
                     enemies = [
-                        new BoltWheelie(512, floorPos_y, 40, 250),
-                        new BoltWheelie(646, floorPos_y, 40, 250),
-                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 40, platforms[3].w)
+                        new BoltWheelie(512, floorPos_y, 35, 250),
+                        new BoltWheelie(646, floorPos_y, 35, 250),
+                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 35, platforms[3].w)
                     ];
 
                     collectables = [];
@@ -196,13 +191,12 @@ class World {
                 render: function () {
                     sky.render();
 
-                    fill(70, 130, 180);
-                    rect(0, floorPos_y, width, height / 4);
-
                     push();
                     translate(scrollPos, 0);
 
-                    // Draw world elements
+                    fill(70, 130, 180);
+                    rect(0, floorPos_y, this.length, height / 4)
+
                     drawMountains();
 
                     drawClouds();
@@ -223,7 +217,6 @@ class World {
 
                     pop();
 
-                    // Draw the game character
                     character.draw();
                 }
             }
