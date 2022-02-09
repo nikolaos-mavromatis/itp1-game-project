@@ -63,11 +63,10 @@ class World {
                     ];
 
                     collectables = [];
-                    var c1 = collectables2DArray(1, 1, platforms[0].x, platforms[0].walkLevel, 30, "coin");
+                    var c1 = collectables2DArray(1, 1, platforms[0].x, platforms[0].y, 30, "diamond", 60);
                     var c2 = collectables2DArray(1, floor(platforms[2].w / 30), platforms[2].x, platforms[2].walkLevel, 30, "coin");
                     var c3 = collectables2DArray(1, 3, platforms[3].x, platforms[3].walkLevel - 70, 30, "coin");
                     var c4 = collectables2DArray(1, 1, 1700, floorPos_y, 30, "diamond");
-                    collectables = collectables.concat(c1, c2, c3, c4);
 
                     // ==================================================================== //
                     // collectables array with pattern 
@@ -81,10 +80,10 @@ class World {
                         pattern.push(p);
                     }
                     var c5 = collectables2DArray(2, nCoins, canyons[4].x, platforms[4].walkLevel - 50, 30, "coin", pattern);
-                    collectables = collectables.concat(c5);
-
                     // ==================================================================== //
-                    rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");
+
+                    var c6 = collectables2DArray(1, 1, 3584, floorPos_y - 50, 30, "diamond", 50);
+                    collectables = collectables.concat(c1, c2, c3, c4, c5, c6);
 
                     flagpole = new Flagpole(3946, floorPos_y, 200);
                 },
@@ -182,9 +181,8 @@ class World {
                     var c2 = collectables2DArray(3, 10, platforms[1].x, platforms[1].walkLevel, 30, "coin");
                     var c3 = collectables2DArray(1, 6, 2083, floorPos_y, 30, "coin");
                     var c4 = collectables2DArray(1, 1, 2452, floorPos_y, 30, "diamond");
-                    collectables = collectables.concat(c1, c2, c3, c4);
-
-                    rotatingCollectable = new Collectable(3584, platforms[4].walkLevel, 30, "diamond");
+                    var c4 = collectables2DArray(1, 1, 3584, platforms[4].walkLevel - 60, 30, "diamond", 50);
+                    collectables = collectables.concat(c1, c2, c3, c4, c5);
 
                     flagpole = new Flagpole(3946, floorPos_y, 200);
                 },
@@ -286,20 +284,5 @@ function drawCollectables() {
                 collectables[i][j].checkCollectable(gameChar_world_x, character.y - collectables[i][j].size / 2);
             }
         }
-    }
-
-    if (!rotatingCollectable.isFound) {
-        push();
-        translate(3584, platforms[4].walkLevel - 2.5 * rotatingCollectable.size);
-        var v = createVector(rotatingCollectable.size, rotatingCollectable.size);
-        v.rotate(angle);
-        rotatingCollectable.x = v.x;
-        rotatingCollectable.y = v.y;
-        rotatingCollectable.draw();
-        angle += 0.02;
-        pop();
-        rotatingCollectable.x = 3584 + v.x;
-        rotatingCollectable.y = platforms[4].walkLevel - 2 * rotatingCollectable.size + v.y;
-        rotatingCollectable.checkCollectable();
     }
 }
