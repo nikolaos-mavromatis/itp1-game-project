@@ -36,7 +36,6 @@ function draw() {
             textSize(20);
             textAlign(CENTER, TOP);
             text("d: " + floor(dist(collectables[i].x, collectables[i].y, mouseX, mouseY)), collectables[i].x, 30);
-            text("isFound: " + collectables[i].isFound, collectables[i].x, 60);
 
             //reference point
             stroke(0);
@@ -50,8 +49,13 @@ function draw() {
             ellipse(collectables[i].x, collectables[i].y, collectables[i].size);
             noStroke();
         }
-
+        // test functionality
+        //checks
         fill(0);
+        textSize(20);
+        textAlign(CENTER, TOP);
+        text("isFound: " + collectables[i].isFound, collectables[i].x, 60);
+
         text("Click anywhere outside\nthe circles to reset...", width / 2, height - 120)
 
         text("Score: " + game_score, width / 2, height - 40);
