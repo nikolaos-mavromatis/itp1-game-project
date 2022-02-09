@@ -290,7 +290,7 @@ function drawCollectables() {
         for (var j = 0; j < collectables[i].length; j++) {
             if (!collectables[i][j].isFound) {
                 collectables[i][j].draw();
-                collectables[i][j].checkCollectable();
+                collectables[i][j].checkCollectable(gameChar_world_x, character.y - collectables[i][j].size / 2);
             }
         }
     }

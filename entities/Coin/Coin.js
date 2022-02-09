@@ -6,18 +6,16 @@ class Coin {
     The collectable's position is determined by the
     centre of the circles.
     */
-    constructor(x, y, size, type) {
+    constructor(x, y, size) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.isFound = false;
-        this.type = type;
-        this.value = 0;
+        this.value = 1;
     }
 
     draw() {
         if (!this.isFound) {
-            this.value = 1;
             // from larger to smaller circle
             noStroke();
             fill(255, 215, 0);
