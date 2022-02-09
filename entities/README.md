@@ -12,5 +12,5 @@ Each folder contains:
 Finally, each object must be loaded into its project's `index.js` file as well as the game's `index.js` by including the below within the head section of the index file.
 
 ```javascript
-<script src="[Path to Entity].js"></script>
+<script src="[Path to .js Object File]"></script>
 ```
