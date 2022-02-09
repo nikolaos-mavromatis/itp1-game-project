@@ -5,7 +5,10 @@ Each object is documented in its own folder.
 
 Each folder contains:  
 1. an `object` file  
-2. a `p5.js project`  
+    - contains the object class
+1. a `p5.js project`  
+    - can be run as a standalone version
+    - used to check design, functionality, interaction, etc.
 
 <br>
 
