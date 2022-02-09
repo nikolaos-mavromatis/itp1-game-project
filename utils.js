@@ -30,7 +30,7 @@ function drawPauseButton(x, y, size) {
 
 }
 
-function collectables2DArray(rows, cols, x, y, size, type, pattern = null) {
+function collectables2DArray(rows, cols, x, y, size, type, r = 0, pattern = null) {
     var collectables = [];
 
     startX = x - floor(cols / 2) * size
@@ -44,13 +44,13 @@ function collectables2DArray(rows, cols, x, y, size, type, pattern = null) {
             if (pattern) {
                 if (pattern[j][i]) {
                     c.push(
-                        new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type)
+                        new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type, r)
                     );
                 }
             }
             else {
                 c.push(
-                    new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type)
+                    new Collectable(startX + i * size, y - 20 - j * (size + 5), size, type, r)
                 );
             }
         }
