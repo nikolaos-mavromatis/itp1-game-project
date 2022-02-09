@@ -13,12 +13,16 @@ function preload() {
 function setup() {
     createCanvas(400, 400);
 
+    size = 50;
     game_score = 0;
-    size = 100
-    collectables = [
-        new Collectable(width / 4, height / 2, size, "coin"),
-        new Collectable(3 * width / 4, height / 2, size, "diamond")
-    ];
+    angle = 0;
+
+    // collectables = [
+    //     new Collectable(width / 4, height / 2, size, "coin"),
+    //     new Collectable(3 * width / 4, height / 2, size, "diamond")
+    // ];
+
+    collectables = [new Collectable(width / 2, height / 2 - 30, size, "diamond", r = 60)];
 
 }
 
@@ -29,7 +33,42 @@ function draw() {
         if (!collectables[i].isFound) {
             collectables[i].draw();
             collectables[i].checkCollectable(mouseX, mouseY);
+        }
 
+        if (collectables[i].isRotating) {
+            // reference points
+            stroke(0);
+            strokeWeight(5);
+            //the center of the trajectory
+            point(collectables[i].x, collectables[i].y)
+
+            stroke(130);
+            strokeWeight(1);
+            noFill();
+            //circular trajectory
+            ellipse(collectables[i].x, collectables[i].y, 2 * collectables[i].r);
+            //radius
+            line(collectables[i].x, collectables[i].y, collectables[i].x + collectables[i].r, collectables[i].y);
+
+            stroke(0);
+            strokeWeight(5);
+            //the current position of the collectable and the center of the interaction circle
+            point(collectables[i].currentX, collectables[i].currentY);
+            stroke(130);
+            strokeWeight(1);
+            noFill();
+            //interaction circle
+            ellipse(collectables[i].currentX, collectables[i].currentY, collectables[i].size);
+            noStroke();
+
+            fill(0);
+            textSize(15);
+            text("r", collectables[i].x + collectables[i].r / 4, collectables[i].y - 20);
+            text("(x, y)", collectables[i].x, collectables[i].y + 10);
+            textAlign(CENTER);
+            text("(currentX, currentY): (" + round(collectables[i].currentX, 0) + ", " + round(collectables[i].currentY, 0) + ")", width / 2, 20);
+        }
+        else {
             // test functionality
             //checks
             fill(0);
@@ -48,7 +87,9 @@ function draw() {
             strokeWeight(2);
             ellipse(collectables[i].x, collectables[i].y, collectables[i].size);
             noStroke();
+
         }
+
         // test functionality
         //checks
         fill(0);
