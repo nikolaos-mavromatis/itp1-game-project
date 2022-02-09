@@ -15,6 +15,7 @@ class Tree {
     }
 
     draw() {
+        noStroke();
         //trunk
         // fill(160, 85, 45);
         fill(205, 133, 63);

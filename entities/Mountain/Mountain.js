@@ -1,56 +1,39 @@
 class Mountain {
-    constructor(x, y, size, snow) {
+    /*
+    Creates a mountain using a trapezoid for the main body
+    and a curve to make the top rounded.
+
+    The position of the mountain is controlled by the 
+    bottom left corner.
+    */
+    constructor(x, y, size, dark) {
         this.x = x;
         this.y = y;
         this.a = size;
-        this.snow = snow;
+        this.dark = dark;
     }
 
     draw() {
-        //mountain
         noStroke();
-        fill(165, 42, 42);
-
+        if (this.dark) {
+            fill(47, 79, 79);
+        } else {
+            fill(119, 136, 153);
+        }
+        // round tip
         beginShape();
-        vertex(this.x - this.a / 2, this.y);
-        vertex(this.x - this.a / 20, this.y - 0.75 * this.a);
-        vertex(this.x + this.a / 20, this.y - 0.75 * this.a);
-        vertex(this.x + this.a / 2, this.y);
+        curveVertex(this.x + 13.5 * this.a / 40, this.y - 3 * this.a / 8);
+        curveVertex(this.x + + 9 * this.a / 20, this.y - 0.75 * this.a);
+        curveVertex(this.x + 11 * this.a / 20, this.y - 0.75 * this.a);
+        curveVertex(this.x + 26.5 * this.a / 40, this.y - 3 * this.a / 8);
         endShape();
 
-        if (this.snow) {
-            //snow
-            fill(255);
-            beginShape();
-            curveVertex(this.x - 6.5 * this.a / 40, this.y - 3 * this.a / 8);
-            curveVertex(this.x - this.a / 20, this.y - 0.75 * this.a);
-            curveVertex(this.x + this.a / 20, this.y - 0.75 * this.a);
-            curveVertex(this.x + 6.5 * this.a / 40, this.y - 3 * this.a / 8);
-            endShape();
-
-            beginShape();
-            vertex(this.x - 3.4 * this.a / 20, this.y - 0.55 * this.a);
-            vertex(this.x - this.a / 20, this.y - 0.75 * this.a);
-            vertex(this.x + this.a / 20, this.y - 0.75 * this.a);
-            vertex(this.x + 4.6 * this.a / 20, this.y - 0.45 * this.a);
-            endShape();
-
-            beginShape();
-            curveVertex(this.x - 3.3 * this.a / 20, this.y - 0.9 * this.a);
-            curveVertex(this.x - 3.395 * this.a / 20, this.y - 0.5501 * this.a);
-            curveVertex(this.x - this.a / 20, this.y - 0.5 * this.a);
-            curveVertex(this.x + 2 * this.a / 20, this.y - 0.47 * this.a);
-            curveVertex(this.x + 4.6 * this.a / 20, this.y - 0.4501 * this.a);
-            curveVertex(this.x + 8.3 * this.a / 20, this.y - 0.55 * this.a);
-            endShape();
-        } else {
-            fill(165, 42, 42);
-            beginShape();
-            curveVertex(this.x - 6.5 * this.a / 40, this.y - 3 * this.a / 8);
-            curveVertex(this.x - this.a / 20, this.y - 0.75 * this.a);
-            curveVertex(this.x + this.a / 20, this.y - 0.75 * this.a);
-            curveVertex(this.x + 6.5 * this.a / 40, this.y - 3 * this.a / 8);
-            endShape();
-        }
+        // main body
+        beginShape();
+        vertex(this.x, this.y);
+        vertex(this.x + 9 * this.a / 20, this.y - 0.75 * this.a);
+        vertex(this.x + 11 * this.a / 20, this.y - 0.75 * this.a);
+        vertex(this.x + this.a, this.y);
+        endShape();
     }
 }

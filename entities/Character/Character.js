@@ -4,11 +4,13 @@ class Character {
     */
     constructor(x, y) {
         this.x = x;
-        this.y = y - 200;
+        // this.y = y - 200; //make the falling effect at the beginning
+        this.y = y;
 
         this.isLeft = false;
         this.isRigth = false;
-        this.isFalling = true;
+        // this.isFalling = true; //make the falling effect at the beginning
+        this.isFalling = false;
         this.isPlummeting = false;
         this.isOnPlatform = false;
         this.hitEnemy = false;

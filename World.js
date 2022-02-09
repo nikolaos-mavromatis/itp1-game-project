@@ -86,7 +86,7 @@ class World {
                     // ==================================================================== //
                     rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");
 
-                    flagpole = new Flagpole(3946, floorPos_y);
+                    flagpole = new Flagpole(3946, floorPos_y, 200);
                 },
                 render: function () {
                     sky.render();
@@ -191,7 +191,7 @@ class World {
 
                     rotatingCollectable = new Collectable(3584, platforms[4].walkLevel, 30, "diamond");
 
-                    flagpole = new Flagpole(3946, floorPos_y);
+                    flagpole = new Flagpole(3946, floorPos_y, 200);
                 },
                 render: function () {
                     sky.render();

@@ -1,28 +1,26 @@
 class Flagpole {
-    constructor(x, y) {
+    constructor(x, y, size) {
         this.x = x;
         this.y = y;
-        this.w = 0.01 * width;
-        this.h = 0.5 * height;
+        this.w = size / 10;
+        this.h = size;
         this.isReached = false;
     }
 
     render() {
-        // TODO: change width/height to be relative to size
-        let w = 0.02 * width;
-        let h = 0.5 * height;
-        let baseW = w;
-        let baseH = 0.2 * h;
-        let poleW = 0.2 * w;
-        let flagW = 2 * w;
-        let flagH = h / 10;
+        noStroke();
+        let baseW = this.w;
+        let baseH = 0.2 * this.h;
+        let poleW = 0.2 * this.w;
+        let flagW = 2 * this.w;
+        let flagH = this.h / 10;
 
         fill(75, 0, 13);
         if (this.isReached) {
             triangle(
-                this.x, this.y - h + 0.04 * h,
-                this.x, this.y - h + 0.04 * h + flagH,
-                this.x - flagW, this.y - h + 0.04 * h + flagH / 2
+                this.x, this.y - this.h + 0.04 * this.h,
+                this.x, this.y - this.h + 0.04 * this.h + flagH,
+                this.x - flagW, this.y - this.h + 0.04 * this.h + flagH / 2
             );
         }
         else {
@@ -33,8 +31,6 @@ class Flagpole {
             );
         }
 
-        fill(70, 130, 180);
-        rect(this.x - poleW / 2, this.y - h, poleW, h, 20);
 
         fill(47, 79, 79);
         beginShape();
@@ -46,6 +42,8 @@ class Flagpole {
         vertex(this.x + baseW / 2, this.y);
         vertex(this.x - baseW / 2, this.y);
         endShape();
+        fill(70, 130, 180);
+        rect(this.x - poleW / 2, this.y - this.h, poleW, this.h - baseH / 2, 20);
     }
 
     checkReached() {
