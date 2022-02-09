@@ -31,6 +31,8 @@ class Collectable {
 
     drawCoin() {
         this.value = 1;
+
+        noStroke();
         // from larger to smaller circle
         fill(255, 215, 0);
         ellipse(this.x, this.y, 0.8 * this.size, this.size);
@@ -72,17 +74,17 @@ class Collectable {
         noStroke();
     }
 
-    checkCollectable() {
+    checkCollectable(x, y) {
         if (
             dist(this.x,
                 this.y,
-                character.worldX,
-                character.y - this.size // coin y is coin.size above the ground (where character.y is), hence the correction
-            ) <= this.size
+                x,
+                y // coin y is coin.size above the ground (where character.y is), hence the correction
+            ) <= this.size / 2
         ) {
-            this.isFound = true;
             coinCollectedSound.play();
             game_score += this.value;
+            this.isFound = true;
         }
     }
 }

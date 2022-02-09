@@ -1,15 +1,16 @@
 var idx;
 var angle = 0;
+var spikes;
 
 class World {
     constructor(level) {
         this.levels = [
             {
                 // level 1
+                length: 4096,
                 setup: function () {
                     sky = new NightSky(500);
 
-                    // character = new Character(0.2 * width, floorPos_y);
                     character = new BubbleMan(0.2 * width, floorPos_y, 80);
 
                     // World elements
@@ -31,7 +32,6 @@ class World {
                     ];
 
                     mountains = [
-                        // new Mountain(x = 100, y = floorPos_y, size = 400, dark = false),
                         new Mountain(800, floorPos_y, 450, false),
                         new Mountain(520, floorPos_y, 350, true),
                         new Mountain(1100, floorPos_y, 350, true),
@@ -56,10 +56,10 @@ class World {
                     ];
 
                     enemies = [
-                        new BoltWheelie(420, floorPos_y, 30, 150),
-                        new BoltWheelie(900, floorPos_y, 30, 150),
-                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 30, platforms[3].w),
-                        new BoltWheelie(2000, floorPos_y, 30, 250),
+                        new BoltWheelie(420, floorPos_y, 35, 150),
+                        new BoltWheelie(900, floorPos_y, 35, 150),
+                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 35, platforms[3].w),
+                        new BoltWheelie(2000, floorPos_y, 35, 250),
                     ];
 
                     collectables = [];
@@ -70,6 +70,7 @@ class World {
                     collectables = collectables.concat(c1, c2, c3, c4);
 
                     // ==================================================================== //
+                    // collectables array with pattern 
                     var pattern = [];
                     var nCoins = 8;
                     for (var i = 0; i < 2; i++) {
@@ -85,22 +86,17 @@ class World {
                     // ==================================================================== //
                     rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");
 
-                    flagpole = new Flagpole(3946, floorPos_y);
+                    flagpole = new Flagpole(3946, floorPos_y, 200);
                 },
                 render: function () {
-                    // fill the sky blue
-                    // TODO:dim the sky the closer the character gets to the flagpole
                     sky.render();
-
-                    // draw some green ground
-                    // fill(0, 155, 0); // original
-                    fill(70, 130, 180);
-                    rect(0, floorPos_y, width, height / 4);
 
                     push();
                     translate(scrollPos, 0);
 
-                    // Draw world elements
+                    fill(70, 130, 180);
+                    rect(0, floorPos_y, this.length, height / 4)
+
                     drawMountains();
 
                     drawClouds();
@@ -119,14 +115,16 @@ class World {
 
                     pop();
 
-                    // Draw the game character
                     character.draw();
                 }
             },
             // level 2 just for confirmation
             {
+                length: 4096,
                 setup: function () {
-                    character = new Character(0.2 * width, floorPos_y);
+                    sky = new NightSky(500);
+
+                    character = new BubbleMan(0.2 * width, floorPos_y, 80);
 
                     // World elements
                     trees = [
@@ -145,7 +143,6 @@ class World {
                     ];
 
                     mountains = [
-                        // new Mountain(x = 100, y = floorPos_y, size = 400, dark = false),
                         new Mountain(800, floorPos_y, 450, false),
                         new Mountain(520, floorPos_y, 350, true),
                         new Mountain(1100, floorPos_y, 350, true),
@@ -154,66 +151,52 @@ class World {
                     ];
 
                     canyons = [
-                        new Canyon(620, floorPos_y, 100),
-                        new Canyon(1140, floorPos_y, 100),
-                        new Canyon(1600, floorPos_y, 100),
-                        new Canyon(1800, floorPos_y, 100),
-                        new Canyon(2800, floorPos_y, 600),
+                        new Canyon(1216, floorPos_y, 640),
+                        new Canyon(1842, floorPos_y, 100),
+                        new Canyon(2972, floorPos_y, 100),
                     ];
 
+                    spikes = [
+                        new SpikeRack(400, floorPos_y, 50, 30, 5, true),
+                        new SpikeRack(2304, floorPos_y, 50, 30, 5, false),
+                        new SpikeRack(2560, floorPos_y, 50, 30, 5, false),
+                        new SpikeRack(3328, floorPos_y, 512, 30, 30, true)
+                    ]
+
                     platforms = [
-                        new Platform(520, floorPos_y - 60, 80, 0),
-                        new Platform(775, floorPos_y - 60, 80, 0),
-                        new Platform(990, floorPos_y - 120, 250, 0),
-                        new Platform(1260, floorPos_y - 180, 200, 0),
-                        new Platform(2555, floorPos_y - 60, 150, 485),
+                        new Platform(936, floorPos_y - 40, 100, 560),
+                        new Platform(1216, floorPos_y - 120, 220, 0),
+                        new Platform(3378, floorPos_y - 50, 100, 0),
+                        new Platform(3602, floorPos_y - 100, 220, 0),
+                        new Platform(3784, floorPos_y - 140, 100, 0),
                     ];
 
                     enemies = [
-                        new BoltWheelie(420, floorPos_y, 40, 150),
-                        // new BoltWheelie(900, floorPos_y, 40, 150),
-                        // new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 40, platforms[3].w),
-                        // new BoltWheelie(2000, floorPos_y, 40, 250),
+                        new BoltWheelie(512, floorPos_y, 35, 250),
+                        new BoltWheelie(646, floorPos_y, 35, 250),
+                        new BoltWheelie(platforms[3].x - platforms[3].w / 2, platforms[3].walkLevel, 35, platforms[3].w)
                     ];
 
                     collectables = [];
-                    var c1 = collectables2DArray(1, 1, platforms[0].x, platforms[0].walkLevel, 30, "coin");
-                    var c2 = collectables2DArray(1, floor(platforms[2].w / 30), platforms[2].x, platforms[2].walkLevel, 30, "coin");
-                    var c3 = collectables2DArray(1, 3, platforms[3].x, platforms[3].walkLevel - 70, 30, "coin");
-                    var c4 = collectables2DArray(1, 1, 1700, floorPos_y, 30, "diamond");
+                    var c1 = collectables2DArray(1, 1, 646, floorPos_y, 30, "diamond");
+                    var c2 = collectables2DArray(3, 10, platforms[1].x, platforms[1].walkLevel, 30, "coin");
+                    var c3 = collectables2DArray(1, 6, 2083, floorPos_y, 30, "coin");
+                    var c4 = collectables2DArray(1, 1, 2452, floorPos_y, 30, "diamond");
                     collectables = collectables.concat(c1, c2, c3, c4);
 
-                    // ==================================================================== //
-                    var pattern = [];
-                    var nCoins = 8;
-                    for (var i = 0; i < 2; i++) {
-                        var p = [];
-                        for (var j = 0; j < nCoins; j++) {
-                            p.push((i + j) % 2 !== 0);
-                        }
-                        pattern.push(p);
-                    }
-                    var c5 = collectables2DArray(2, nCoins, canyons[4].x, platforms[4].walkLevel - 50, 30, "coin", pattern);
-                    collectables = collectables.concat(c5);
+                    rotatingCollectable = new Collectable(3584, platforms[4].walkLevel, 30, "diamond");
 
-                    // ==================================================================== //
-                    rotatingCollectable = new Collectable(3495, floorPos_y - 20, 30, "diamond");
-
-                    flagpole = new Flagpole(3946, floorPos_y);
+                    flagpole = new Flagpole(3946, floorPos_y, 200);
                 },
                 render: function () {
-                    // fill the sky blue
-                    // TODO:dim the sky the closer the character gets to the flagpole
-                    background(100, 155, 255);
-
-                    // draw some green ground
-                    fill(0, 155, 0);
-                    rect(0, floorPos_y, width, height / 4);
+                    sky.render();
 
                     push();
                     translate(scrollPos, 0);
 
-                    // Draw world elements
+                    fill(70, 130, 180);
+                    rect(0, floorPos_y, this.length, height / 4)
+
                     drawMountains();
 
                     drawClouds();
@@ -221,6 +204,8 @@ class World {
                     drawTrees();
 
                     drawCanyons();
+
+                    drawSpikes();
 
                     drawPlatforms();
 
@@ -232,7 +217,6 @@ class World {
 
                     pop();
 
-                    // Draw the game character
                     character.draw();
                 }
             }
@@ -282,6 +266,12 @@ function drawCanyons() {
     }
 }
 
+function drawSpikes() {
+    for (var i = 0; i < spikes.length; i++) {
+        spikes[i].draw();
+    }
+}
+
 function drawPlatforms() {
     for (var i = 0; i < platforms.length; i++) {
         platforms[i].draw();
@@ -293,14 +283,14 @@ function drawCollectables() {
         for (var j = 0; j < collectables[i].length; j++) {
             if (!collectables[i][j].isFound) {
                 collectables[i][j].draw();
-                collectables[i][j].checkCollectable();
+                collectables[i][j].checkCollectable(gameChar_world_x, character.y - collectables[i][j].size / 2);
             }
         }
     }
 
     if (!rotatingCollectable.isFound) {
         push();
-        translate(3495, floorPos_y - 2.5 * rotatingCollectable.size);
+        translate(3584, platforms[4].walkLevel - 2.5 * rotatingCollectable.size);
         var v = createVector(rotatingCollectable.size, rotatingCollectable.size);
         v.rotate(angle);
         rotatingCollectable.x = v.x;
@@ -308,8 +298,8 @@ function drawCollectables() {
         rotatingCollectable.draw();
         angle += 0.02;
         pop();
-        rotatingCollectable.x = 3495 + v.x;
-        rotatingCollectable.y = floorPos_y - 2 * rotatingCollectable.size + v.y;
+        rotatingCollectable.x = 3584 + v.x;
+        rotatingCollectable.y = platforms[4].walkLevel - 2 * rotatingCollectable.size + v.y;
         rotatingCollectable.checkCollectable();
     }
 }

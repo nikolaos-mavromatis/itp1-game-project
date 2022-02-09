@@ -4,6 +4,8 @@ class Diamond {
         this.y = y;
         this.w = size;
         this.h = size;
+
+        this.value = 2;
     }
 
     draw() {
@@ -32,15 +34,6 @@ class Diamond {
         vertex(this.x + 0.4 * this.w / 2, this.y - 0.6 * this.h / 2);
         vertex(this.x, this.y + this.h / 2);
         endShape();
-        // line(
-        //     this.x - this.w / 2, this.y - 0.75 * this.h / 2,
-        //     this.x - 0.4 * this.w / 2, this.y - 0.6 * this.h / 2
-        // );
-        // line(
-        //     this.x - this.w / 2, this.y - 0.75 * this.h / 2,
-        //     this.x - 0.4 * this.w / 2, this.y - 0.6 * this.h / 2
-        // );
-
     }
 }
 
