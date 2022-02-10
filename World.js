@@ -1,6 +1,5 @@
 var idx;
 var angle = 0;
-var spikes;
 
 class World {
     constructor(level) {
@@ -46,6 +45,8 @@ class World {
                         new Canyon(1800, floorPos_y, 100),
                         new Canyon(2800, floorPos_y, 600),
                     ];
+
+                    spikes = [];
 
                     platforms = [
                         new Platform(520, floorPos_y - 60, 80, 0),
