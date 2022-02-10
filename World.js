@@ -181,7 +181,7 @@ class World {
                     var c2 = collectables2DArray(3, 10, platforms[1].x, platforms[1].walkLevel, 30, "coin");
                     var c3 = collectables2DArray(1, 6, 2083, floorPos_y, 30, "coin");
                     var c4 = collectables2DArray(1, 1, 2452, floorPos_y, 30, "diamond");
-                    var c4 = collectables2DArray(1, 1, 3584, platforms[4].walkLevel - 60, 30, "diamond", 50);
+                    var c5 = collectables2DArray(1, 1, 3584, platforms[4].walkLevel - 60, 30, "diamond", 50);
                     collectables = collectables.concat(c1, c2, c3, c4, c5);
 
                     flagpole = new Flagpole(3946, floorPos_y, 200);
