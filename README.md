@@ -17,6 +17,8 @@ Each level is 4096x576px.
 ### __Level 1__
 ![Level1](https://user-images.githubusercontent.com/17873367/153066635-7138da3c-1fbf-4712-8cf0-d1e3f57e85f5.png)
 
+<!-- TODO: LEVEL 2 IMAGE -->
+
 ## 🥇 __Credits__
 ### __Text Font__  
 "Luckiest Guy" by Astigmatic. Available in Google Fonts.  
