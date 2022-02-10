@@ -46,7 +46,6 @@ class Game {
         if (!this.world.isCompleted) {
             this.world.render();
         }
-        // else { clear(); }
 
         // Below statements (if true) should happen before the player has the chance to move
         if (lives < 1) {
@@ -96,18 +95,6 @@ class Game {
         pop();
 
 
-        function redCrossLife(x, y, size) {
-            var shortSide = size / 3;
-
-            fill(255, 168, 0);
-            //vertical bar
-            rect(x - shortSide / 2, y - size / 2, shortSide, size, 2);
-            //horizontal
-            rect(x - size / 2, y - shortSide / 2, size, shortSide, 2);
-
-        }
-
-        // Display red crosses for lives
         for (var i = 0; i < lives; i++) {
             character.drawLife(width - rightMargin - 15 - i * (30 + rightMargin), topMargin + 15, 30);
         }

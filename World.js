@@ -166,7 +166,7 @@ class World {
                         new Platform(936, floorPos_y - 40, 100, 560),
                         new Platform(1216, floorPos_y - 120, 220, 0),
                         new Platform(3378, floorPos_y - 50, 100, 0),
-                        new Platform(3602, floorPos_y - 100, 220, 0),
+                        new Platform(3565, floorPos_y - 100, 220, 0),
                         new Platform(3784, floorPos_y - 140, 100, 0),
                     ];
 
