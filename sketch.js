@@ -19,6 +19,7 @@ var scrollPos;
 
 var character;
 var enemies;
+var spikes;
 var trees;
 var clouds;
 var mountains;
