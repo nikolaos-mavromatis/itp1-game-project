@@ -1,4 +1,3 @@
-var r;
 var wheelD;
 var rot = 0;
 
@@ -22,8 +21,8 @@ class BoltWheelie {
         size = (4*r + ratio*r) / 2 <=>
         r = 2*size / (4 + ratio)
         */
-        r = 2 * this.size / (4 + ratio);
-        wheelD = ratio * r;
+        this.r = 2 * this.size / (4 + ratio);
+        wheelD = ratio * this.r;
     }
 
     update() {
@@ -35,12 +34,13 @@ class BoltWheelie {
     }
 
     draw() {
+        noStroke();
         this.update();
         this.#drawEnemy();
     }
 
     checkContact(x, y) {
-        if (dist(this.currentX, this.y, x, y) <= 2 * r) {
+        if (dist(this.currentX, this.y, x, y) <= 1.5 * this.r) {
             return true;
         }
 
@@ -67,8 +67,8 @@ class BoltWheelie {
         this.#drawBody();
         this.#drawEye();
         this.#drawMouth();
-        this.#drawWheel(this.currentX - 0.5 * r, this.y - wheelD / 2, wheelD, this.direction);
-        this.#drawWheel(this.currentX + 0.5 * r, this.y - wheelD / 2, wheelD, this.direction);
+        this.#drawWheel(this.currentX - 0.5 * this.r, this.y - wheelD / 2, wheelD, this.direction);
+        this.#drawWheel(this.currentX + 0.5 * this.r, this.y - wheelD / 2, wheelD, this.direction);
         this.#drawBolt();
 
         // // reference point
@@ -80,43 +80,43 @@ class BoltWheelie {
 
     #drawBody() {
         fill(92, 45, 122);
-        ellipse(this.currentX, this.y - (wheelD / 2 + r), 2 * r, 2 * r);
+        ellipse(this.currentX, this.y - (wheelD / 2 + this.r), 2 * this.r, 2 * this.r);
     }
 
     #drawEye() {
         fill(255);
         // contour
         ellipse(
-            this.currentX + (0.5 * r) * this.direction,
-            this.y - (wheelD / 2 + r + r / 3),
-            0.8 * 0.55 * r,
-            0.55 * r
+            this.currentX + (0.5 * this.r) * this.direction,
+            this.y - (wheelD / 2 + this.r + this.r / 3),
+            0.8 * 0.55 * this.r,
+            0.55 * this.r
         );
         fill(0);
         // pupil
         ellipse(
-            this.currentX + (0.5 * r) * this.direction + 0.15 * 0.55 * r * this.direction,
-            this.y - (wheelD / 2 + r + r / 3) + 0.1 * 0.55 * r,
-            0.4 * 0.55 * r,
-            0.5 * 0.55 * r
+            this.currentX + (0.5 * this.r) * this.direction + 0.15 * 0.55 * this.r * this.direction,
+            this.y - (wheelD / 2 + this.r + this.r / 3) + 0.1 * 0.55 * this.r,
+            0.4 * 0.55 * this.r,
+            0.5 * 0.55 * this.r
         );
         // eyebrow
         beginShape();
         vertex(
-            this.currentX + 0.3 * r * this.direction,
-            this.y - wheelD / 2 - r - 0.8 * r
+            this.currentX + 0.3 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r - 0.8 * this.r
         );
         vertex(
-            this.currentX + 0.79 * r * this.direction,
-            this.y - wheelD / 2 - r - 0.5 * r
+            this.currentX + 0.79 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r - 0.5 * this.r
         );
         vertex(
-            this.currentX + 0.8 * r * this.direction,
-            this.y - wheelD / 2 - r - 0.4 * r
+            this.currentX + 0.8 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r - 0.4 * this.r
         );
         vertex(
-            this.currentX + 0.25 * r * this.direction,
-            this.y - wheelD / 2 - r - 0.55 * r
+            this.currentX + 0.25 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r - 0.55 * this.r
         );
         endShape();
     }
@@ -125,20 +125,20 @@ class BoltWheelie {
         stroke(0);
         strokeWeight(1);
         line(
-            this.currentX + 0.3 * r * this.direction + 0.6 * r * this.direction,
-            this.y - wheelD / 2 - r + 0.25 * r,
-            this.currentX + 0.3 * r * this.direction,
-            this.y - wheelD / 2 - r + 0.25 * r
+            this.currentX + 0.3 * this.r * this.direction + 0.6 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r + 0.25 * this.r,
+            this.currentX + 0.3 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r + 0.25 * this.r
         );
         noStroke();
         fill(255);
         triangle(
-            this.currentX + 0.3 * r * this.direction + 0.20 * r * this.direction,
-            this.y - wheelD / 2 - r + 0.25 * r + 2,
-            this.currentX + 0.3 * r * this.direction + 0.30 * r * this.direction,
-            this.y - wheelD / 2 - r + 0.25 * r + 2,
-            this.currentX + 0.3 * r * this.direction + 0.25 * r * this.direction,
-            this.y - wheelD / 2 - r + 0.25 * r + 0.2 * r
+            this.currentX + 0.3 * this.r * this.direction + 0.20 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r + 0.25 * this.r + 2,
+            this.currentX + 0.3 * this.r * this.direction + 0.30 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r + 0.25 * this.r + 2,
+            this.currentX + 0.3 * this.r * this.direction + 0.25 * this.r * this.direction,
+            this.y - wheelD / 2 - this.r + 0.25 * this.r + 0.2 * this.r
         );
     }
 
@@ -168,33 +168,33 @@ class BoltWheelie {
     }
 
     #drawBolt() {
-        let w = 1.8 * r / 3;
+        let w = 1.8 * this.r / 3;
 
         fill(255, 228, 48);
         beginShape();
         vertex(
-            this.currentX - r / 2.5 * this.direction - this.direction * w / 2,
-            this.y - (wheelD / 2 + r + r / 3) - 1.8 * r / 2
+            this.currentX - this.r / 2.5 * this.direction - this.direction * w / 2,
+            this.y - (wheelD / 2 + this.r + this.r / 3) - 1.8 * this.r / 2
         );
         vertex(
-            this.currentX - r / 2.5 * this.direction - this.direction * 0.2 * w / 2,
-            this.y - (wheelD / 2 + r + r / 3) - 0.1 * 1.8 * r / 2
+            this.currentX - this.r / 2.5 * this.direction - this.direction * 0.2 * w / 2,
+            this.y - (wheelD / 2 + this.r + this.r / 3) - 0.1 * 1.8 * this.r / 2
         );
         vertex(
-            this.currentX - r / 2.5 * this.direction - this.direction * w / 2,
-            this.y - (wheelD / 2 + r + r / 3) - 0.1 * 1.8 * r / 2
+            this.currentX - this.r / 2.5 * this.direction - this.direction * w / 2,
+            this.y - (wheelD / 2 + this.r + this.r / 3) - 0.1 * 1.8 * this.r / 2
         );
         vertex(
-            this.currentX - r / 2.5 * this.direction + this.direction * w / 2,
-            this.y - (wheelD / 2 + r + r / 3) + 1.8 * r / 2
+            this.currentX - this.r / 2.5 * this.direction + this.direction * w / 2,
+            this.y - (wheelD / 2 + this.r + this.r / 3) + 1.8 * this.r / 2
         );
         vertex(
-            this.currentX - r / 2.5 * this.direction + this.direction * 0.2 * w / 2,
-            this.y - (wheelD / 2 + r + r / 3) + 0.1 * 1.8 * r / 2
+            this.currentX - this.r / 2.5 * this.direction + this.direction * 0.2 * w / 2,
+            this.y - (wheelD / 2 + this.r + this.r / 3) + 0.1 * 1.8 * this.r / 2
         );
         vertex(
-            this.currentX - r / 2.5 * this.direction + this.direction * w / 2,
-            this.y - (wheelD / 2 + r + r / 3) + 0.1 * 1.8 * r / 2
+            this.currentX - this.r / 2.5 * this.direction + this.direction * w / 2,
+            this.y - (wheelD / 2 + this.r + this.r / 3) + 0.1 * 1.8 * this.r / 2
         );
         endShape();
     }
