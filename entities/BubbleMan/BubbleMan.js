@@ -1,4 +1,3 @@
-// var thruster;
 var suitColor;
 
 class BubbleMan {
@@ -20,7 +19,7 @@ class BubbleMan {
         this.isFalling = true;
         this.isPlummeting = false;
 
-        this.thruster = new ParticleSystem(createVector(this.x, this.y), this.h / 2);
+        this.thruster = new Thruster(createVector(this.x, this.y), this.h / 2);
     }
 
     draw() {
@@ -28,64 +27,20 @@ class BubbleMan {
             this.thruster.addParticle();
             this.thruster.run();
         }
-        this.stand();
+        
+        if (this.isLeft) {
+            // add your walking left code
+            this.turnLeft();
+        }
+        else if (this.isRight) {
+            // add your walking right code
+            this.turnRight();
+        }
+        else {
+            // add your standing front facing code
+            this.stand();
+        }
         // this.#drawGrid();
-    }
-
-    drawLife(x, y, size) {
-        // draw white helmet lining under the chin
-        stroke(255, 255, 255, 130);
-        strokeWeight(1);
-        noFill();
-        ellipse(x, y + 1, size - 4, size - 1);
-        noStroke();
-        // draw helmet
-        fill(suitColor);
-        ellipse(x, y, size, size);
-
-        //draw head
-        fill(0);
-        let headD = size / 1.5;
-        let headCy = y + headD / 5 - 3;
-        ellipse(x, headCy, headD, headD);
-
-        // draw eyes
-        fill(255);
-        let eyeline = headCy - headD / 8;
-        let leftEyeCx = x - headD / 6;
-        let leftEyeW = headD / 5;
-        let leftEyeH = headD / 15;
-        rect(leftEyeCx - leftEyeW / 2, eyeline - leftEyeH / 2, leftEyeW, leftEyeH, 10);
-
-        let rightEyeCx = x + headD / 6;
-        let rightEyeW = headD / 3.5;
-        let rightEyeH = headD / 3;
-        ellipse(rightEyeCx, eyeline, rightEyeW, rightEyeH);
-
-        // draw eyeball
-        fill(0);
-        let rand = size / 150000
-        ellipse(
-            rightEyeCx + random(-rand, rand) * rightEyeCx,
-            eyeline + headD / 20 + random(-rand, rand) * eyeline,
-            rightEyeW / 1.5,
-            rightEyeW / 1.5
-        );
-
-        // draw mouth
-        fill(255);
-        ellipse(x, headCy + headD / 6, headD / 3, headD / 4);
-        fill(0);
-        push();
-        translate(x, headCy + headD / 9);
-        rotate(PI / 15);
-        ellipse(0, 0, headD / 2.5, headD / 4.2);
-        pop();
-
-        // draw helmet glass
-        fill(70, 130, 180, 150);
-        let d2 = 0.85 * size;
-        ellipse(x, y, d2, d2);
     }
 
     move() {
@@ -241,12 +196,76 @@ class BubbleMan {
         this.#drawHead();
     }
 
-    walkLeft() {
-
+    turnLeft() {
+        noStroke();
+        this.#drawLegs();
+        this.#drawFrontBody();
+        this.#drawLeftSideArm();
+        this.#drawSideHead();
     }
 
-    walkRight() {
+    turnRight() {
+        noStroke();
+        this.#drawLegs();
+        this.#drawFrontBody();
+        this.#drawRightSideArm();
+        this.#drawSideHead();
+    }
 
+    drawLife(x, y, size) {
+        // draw white helmet lining under the chin
+        stroke(255, 255, 255, 130);
+        strokeWeight(1);
+        noFill();
+        ellipse(x, y + 1, size - 4, size - 1);
+        noStroke();
+        // draw helmet
+        fill(suitColor);
+        ellipse(x, y, size, size);
+
+        //draw head
+        fill(0);
+        let headD = size / 1.5;
+        let headCy = y + headD / 5 - 3;
+        ellipse(x, headCy, headD, headD);
+
+        // draw eyes
+        fill(255);
+        let eyeline = headCy - headD / 8;
+        let leftEyeCx = x - headD / 6;
+        let leftEyeW = headD / 5;
+        let leftEyeH = headD / 15;
+        rect(leftEyeCx - leftEyeW / 2, eyeline - leftEyeH / 2, leftEyeW, leftEyeH, 10);
+
+        let rightEyeCx = x + headD / 6;
+        let rightEyeW = headD / 3.5;
+        let rightEyeH = headD / 3;
+        ellipse(rightEyeCx, eyeline, rightEyeW, rightEyeH);
+
+        // draw eyeball
+        fill(0);
+        let rand = size / 150000
+        ellipse(
+            rightEyeCx + random(-rand, rand) * rightEyeCx,
+            eyeline + headD / 20 + random(-rand, rand) * eyeline,
+            rightEyeW / 1.5,
+            rightEyeW / 1.5
+        );
+
+        // draw mouth
+        fill(255);
+        ellipse(x, headCy + headD / 6, headD / 3, headD / 4);
+        fill(0);
+        push();
+        translate(x, headCy + headD / 9);
+        rotate(PI / 15);
+        ellipse(0, 0, headD / 2.5, headD / 4.2);
+        pop();
+
+        // draw helmet glass
+        fill(70, 130, 180, 150);
+        let d2 = 0.85 * size;
+        ellipse(x, y, d2, d2);
     }
 
     #drawGrid() {
@@ -371,6 +390,79 @@ class BubbleMan {
         rect(rightArmCx - armW / 2, armCy - armH / 2, armW, armH, this.h / 15);
     }
 
+    #drawLeftSideArm() {
+        let armW = this.w / 5;
+        let armH = this.h / 4;
+        let leftArmCx = this.x;
+        let armCy = this.y - 4.4 * this.h / 8;
+
+        // draw hands
+        fill(255);
+        rect(
+            leftArmCx,
+            armCy + 0.9 * armH / 2,
+            armW / 2,
+            armH / 6,
+            this.h / 70
+        );
+        rect(
+            leftArmCx,
+            armCy + 1.05 * armH / 2,
+            armW / 3,
+            armH / 5,
+            this.h / 50
+        );
+        rect(
+            leftArmCx,
+            armCy + 1.05 * armH / 2,
+            armW / 4,
+            armH / 7,
+            this.h / 50
+        );
+
+        //draw arms
+        fill(suitColor);
+        rect(leftArmCx, armCy - armH / 2, armW, armH, this.h / 15);
+
+        
+    }
+
+    #drawRightSideArm() {
+        let armW = this.w / 5;
+        let armH = this.h / 4;
+        let rightArmCx = this.x;
+        let armCy = this.y - 4.4 * this.h / 8;
+
+        fill(255);
+        rect(
+            rightArmCx,
+            armCy + 0.9 * armH / 2,
+            armW / 2,
+            armH / 6,
+            this.h / 70
+        );
+        rect(
+            rightArmCx,
+            armCy + 1.05 * armH / 2,
+            armW / 3,
+            armH / 5,
+            this.h / 50
+        );
+        rect(
+            rightArmCx,
+            armCy + 1.05 * armH / 2,
+            armW / 4,
+            armH / 7,
+            this.h / 50
+        );
+
+        //draw arms
+        fill(suitColor);
+        rect(rightArmCx, armCy - armH / 2, armW, armH, this.h / 15);
+
+        
+    }
+
     #drawFrontBody() {
         let waistCy = this.y - 7 * this.h / 20;
         let waistW = 0.65 * this.w;
@@ -404,7 +496,7 @@ class BubbleMan {
         // draw helmet
         fill(suitColor);
         ellipse(this.x, helmetCy, helmetD, helmetD);
-
+        
         //draw head
         fill(0);
         let headD = this.h / 5;
@@ -449,10 +541,37 @@ class BubbleMan {
         fill(70, 130, 180, 150);
         let d2 = 0.85 * helmetD;
         ellipse(this.x, helmetCy, d2, d2);
+
+    }
+
+    #drawSideHead() {
+        let helmetD = this.h / 3;
+        let helmetCy = this.y - this.h + helmetD / 2;
+        // draw white helmet lining under the chin
+        stroke(255, 255, 255, 130);
+        strokeWeight(1);
+        noFill();
+        ellipse(this.x, helmetCy + 1, helmetD - 4, helmetD - 1);
+        noStroke();
+        
+        // draw helmet glass
+        fill(70, 130, 180, 150);
+        let d2 = 0.85 * helmetD;
+        if (this.isLeft){
+            ellipse(this.x - 7, helmetCy, d2, d2);
+        }
+        if (this.isRight) {
+            ellipse(this.x + 7, helmetCy, d2, d2);
+        }
+
+        // draw helmet
+        fill(suitColor);
+        ellipse(this.x, helmetCy, helmetD, helmetD);
+
     }
 }
 
-class Particle {
+class Sparkle {
     constructor(position, lifespan) {
         this.acceleration = createVector(0, 0.05);
         this.velocity = createVector(random(-0.5, 0.5), random(-1, 0));
@@ -480,14 +599,14 @@ class Particle {
 }
 
 
-class ParticleSystem {
+class Thruster {
     constructor(position, lifespan) {
         this.origin = position.copy();
         this.lifespan = lifespan;
         this.particles = [];
     }
     addParticle() {
-        this.particles.push(new Particle(this.origin, this.lifespan));
+        this.particles.push(new Sparkle(this.origin, this.lifespan));
     }
 
     run() {
