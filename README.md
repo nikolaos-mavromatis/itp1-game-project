@@ -1,6 +1,9 @@
 # CM1005 ITP1 – Game Project  
 _University of London_  
 _(October 2021 - March 2022)_
+
+A basic platformer game using the `p5.js` framework and part of the _Introduction to Programming I_ course for B.Sc. in Computer Science. 
+
 ## 📋 __Project Board__  
 https://github.com/nikolaos-mavromatis/itp1-game-project/projects/1
 
@@ -10,6 +13,8 @@ https://nikolaos-mavromatis.github.io/itp1-game-project/
 
 ## 🌍 __World Elements__  
 <img width="422" alt="image" src="https://user-images.githubusercontent.com/17873367/153054265-81bdc4c9-26e4-403a-8197-99f11f3a5f9f.png">
+
+
 
 ## 🗺️ __Levels__  
 Each level is 4096x576px.  
