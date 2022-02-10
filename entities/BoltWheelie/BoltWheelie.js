@@ -49,14 +49,14 @@ class BoltWheelie {
 
     checkDead(x, y) {
         if (
-            dist(x, y, this.currentX, this.y) < 1.5 * this.size &&
+            dist(x, y, this.currentX, this.y) < 2 * this.size &&
             (
                 (x > this.currentX - this.size / 2) &&
                 (x < this.currentX + this.size / 2)
             )
         ) {
             this.isDead = true;
-            character.y -= 10;
+            character.y -= 15;
         }
     }
 
