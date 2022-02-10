@@ -12,6 +12,10 @@ Each folder contains:
 
 <br>
 
+The rules of interactions between each object and a foreign one are checked using dummy objects usually controlled by the cursor's coordinates. 
+
+<br>
+
 Finally, each object must be loaded into its project's `index.js` file as well as the game's `index.js` by including the below within the head section of the index file.
 
 ```javascript
