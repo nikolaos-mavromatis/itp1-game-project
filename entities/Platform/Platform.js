@@ -1,4 +1,4 @@
-/* BUG: when character on the platform scrollPos doesn't work
+/*
 The screen should scroll with the character standing on the platform. 
 Maybe different scrollPos values for various reasons. 
 */
