@@ -50,11 +50,11 @@ class Game {
         // Below statements (if true) should happen before the player has the chance to move
         if (lives < 1) {
             backgroundMusic.pause();
-            this.displayGameOver();
+            this.interfaceGameOver();
             return;
         }
         if (flagpole.isReached) {
-            this.displayLevelComplete();
+            this.interfaceLevelComplete();
             // bring back to the ground if level completed while jumping
             character.y = min(character.y + 1, floorPos_y);
             character.thruster.origin.y = min(character.thruster.origin.y + 1, floorPos_y);
@@ -66,7 +66,7 @@ class Game {
 
         character.move();
 
-        this.displayScoreAndLives();
+        this.interfaceGameplay();
 
         character.checkPlayerDie();
 
@@ -77,7 +77,7 @@ class Game {
         gameChar_world_x = character.x - scrollPos;
     }
 
-    displayScoreAndLives() {
+    interfaceGameplay() {
         var coin;
         var nScoreDigits;
         var topMargin = 0.02 * height
@@ -99,7 +99,6 @@ class Game {
             character.drawLife(width - rightMargin - 15 - i * (30 + rightMargin), topMargin + 15, 30);
         }
 
-
         // Display coin and score
         textSize(fontSize);
         textFont(font);
@@ -112,15 +111,12 @@ class Game {
         coin = new Collectable(width - rightMargin - 20 - nScoreDigits * 17, 63, 30, "coin");
         coin.draw();
 
-
         // display progress
         fill(0, 250, 154);
         rect(0, height - 10, map(flagpole.x - gameChar_world_x, flagpole.x, 0, 0, width), 10);
-
-
     }
 
-    displayGameOver() {
+    interfaceGameOver() {
         textSize(80);
         textFont(font);
         textAlign(CENTER, BOTTOM);
@@ -131,7 +127,7 @@ class Game {
         text("Press SPACE to continue", width / 2, 1.02 * height / 2);
     }
 
-    displayLevelComplete() {
+    interfaceLevelComplete() {
         textSize(80);
         textFont(font);
         textAlign(CENTER, BOTTOM);
