@@ -20,14 +20,12 @@ function draw() {
     stroke("lightgreen");
     strokeWeight(5);
     point(enemy.currentX, enemy.y);
-    strokeWeight(1);
 
     //interaction area
-    stroke("lightgreen");
-    strokeWeight(5);
     point(enemy.currentX, enemy.y - enemy.size + enemy.r);
-    strokeWeight(1);
-    stroke(255);
+
     noFill();
+    stroke(255);
+    strokeWeight(1);
     ellipse(enemy.currentX, enemy.y - enemy.size + enemy.r, 2 * enemy.r);
 }
