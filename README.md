@@ -17,7 +17,7 @@ https://nikolaos-mavromatis.github.io/itp1-game-project/
 
 
 ## 🗺️ __Levels__  
-Each level is 4096x576px.  
+There game has 2 levels.  Each level is 4096x576px.  
 
 ### __Level 1__
 ![Level1](https://user-images.githubusercontent.com/17873367/153066635-7138da3c-1fbf-4712-8cf0-d1e3f57e85f5.png)
