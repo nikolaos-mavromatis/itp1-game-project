@@ -213,7 +213,15 @@ class BubbleMan {
             }
         }
 
-        if (this.y > height + this.h || this.hitEnemy) {
+        for (var i = 0; i < spikes.length; i++) {
+            this.hitSpikes = spikes[i].checkContact(gameChar_world_x, this.y);
+
+            if (this.hitSpikes) {
+                break;
+            }
+        }
+
+        if (this.y > height + this.h || this.hitEnemy || this.hitSpikes) {
             lives -= 1;
             if (lives > 0) {
                 loseLifeSound.play();
