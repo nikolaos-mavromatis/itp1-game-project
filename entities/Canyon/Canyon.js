@@ -33,7 +33,7 @@ class Canyon {
 
     checkCanyon() {
         if (
-            (abs(gameChar_world_x - this.x) < this.w / 2)
+            (abs(character.worldX - this.x) < this.w / 2)
             &&
             (character.y == floorPos_y)
         ) {

@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 var levelBadge = {
     points: [],
     size: 25,
@@ -36,10 +39,6 @@ class Game {
 
         // Variable to control the background scrolling.
         scrollPos = 0;
-
-        // Variable to store the real position of the gameChar in the game
-        // world. Needed for collision detection.
-        gameChar_world_x = character.x - scrollPos;
     }
 
     play() {
@@ -73,8 +72,6 @@ class Game {
         if (!flagpole.isReached) {
             flagpole.checkReached();
         }
-
-        gameChar_world_x = character.x - scrollPos;
     }
 
     interfaceGameplay() {
@@ -113,7 +110,7 @@ class Game {
 
         // display progress
         fill(0, 250, 154);
-        rect(0, height - 10, map(flagpole.x - gameChar_world_x, flagpole.x, 0, 0, width), 10);
+        rect(0, height - 10, map(flagpole.x - character.worldX, flagpole.x, 0, 0, width), 10);
     }
 
     interfaceGameOver() {
