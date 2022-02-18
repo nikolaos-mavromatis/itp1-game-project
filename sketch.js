@@ -51,7 +51,7 @@ function preload() {
     // Sounds
     soundFormats('mp3', 'wav');
 
-    jumpSound = loadSound('assets/sounds/jump.wav');
+    jumpSound = loadSound('assets/sounds/jumpBoingShort.wav');
     jumpSound.setVolume(0.1);
 
     backgroundMusic = loadSound('assets/sounds/backgroundMusic.wav');
@@ -68,6 +68,9 @@ function preload() {
 
     gameOverSound = loadSound("./assets/sounds/gameOver.wav");
     gameOverSound.setVolume(0.25)
+
+    enemyKilledSound = loadSound('assets/sounds/enemyKilled.wav');
+    enemyKilledSound.setVolume(0.08);
 }
 
 function setup() {
