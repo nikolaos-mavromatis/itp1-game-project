@@ -4,19 +4,27 @@ _University of London_
 _(October 2021 - March 2022)_
 
 A basic platformer game using the `p5.js` framework and part of the _Introduction to Programming I_ course for B.Sc. in Computer Science.
+<br>
+<br>
 
 ## 📋 **Project Board**
 
 https://github.com/nikolaos-mavromatis/itp1-game-project/projects/1
+<br>
+<br>
 
 ## 🎮 **GitHub Pages**
 
 The game is accessible via GitHub pages.  
 https://nikolaos-mavromatis.github.io/itp1-game-project/
+<br>
+<br>
 
 ## 🌍 **World Elements**
 
-<img width="422" alt="image" src="https://user-images.githubusercontent.com/17873367/153054265-81bdc4c9-26e4-403a-8197-99f11f3a5f9f.png">
+<img width="422" alt="image" src="entities/mainEntities.png">
+<br>
+<br>
 
 ## 🗺️ **Levels**
 
@@ -27,6 +35,8 @@ There game has 2 levels. Each level is 4096x576px.
 ![Level1](https://user-images.githubusercontent.com/17873367/153066635-7138da3c-1fbf-4712-8cf0-d1e3f57e85f5.png)
 
 <!-- TODO: LEVEL 2 IMAGE -->
+<br>
+<br>
 
 ## 🥇 **Credits**
 
@@ -45,30 +55,37 @@ Kazuki Umeda. (2021, December 23). _Easy gradient effect - p5.js tutorial_ [Vide
 
 All sounds are downloaded from https://freesound.org/. Full list to be added later.
 
-- **Game Over**  
-  "Game Over Arcade.mp3" by myfox14  
-  LICENSED UNDER CC0 1.0 UNIVERSAL (CC0 1.0) PUBLIC DOMAIN DEDICATION
+#### **Game Over**
 
-- **Level Complete**  
-  "04099 magic string spell.wav" by Robinhood76  
-  LICENSED UNDER ATTRIBUTION-NON COMMERCIAL 3.0 UNPORTED (CC BY-NC 3.0)
+"Game Over Arcade.mp3" by myfox14  
+ LICENSED UNDER CC0 1.0 UNIVERSAL (CC0 1.0) PUBLIC DOMAIN DEDICATION
 
-- **Jump**  
-  "Boing Sound" by SiliconeSound  
-  LICENSED UNDER ATTRIBUTION 3.0 UNPORTED (CC BY 3.0)
+#### **Level Complete**
 
-- **Enemy Killed**  
-  "hop8.wav" by felixyadomi  
-  LICENSED UNDER ATTRIBUTION 3.0 UNPORTED (CC BY 3.0)
+"04099 magic string spell.wav" by Robinhood76  
+ LICENSED UNDER ATTRIBUTION-NON COMMERCIAL 3.0 UNPORTED (CC BY-NC 3.0)
 
-- **Background Music**  
-  "Funny background music #7.wav" by BloodPixelHero  
-  LICENSED UNDER ATTRIBUTION 3.0 UNPORTED (CC BY 3.0)
+#### **Jump**
 
-- **Coin Collected**  
-  "Retro*Coin_03.wav" by MATRIXXX*  
-  LICENSED UNDER CC0 1.0 UNIVERSAL (CC0 1.0) PUBLIC DOMAIN DEDICATION
+"Boing Sound" by SiliconeSound  
+ LICENSED UNDER ATTRIBUTION 3.0 UNPORTED (CC BY 3.0)
 
-- **Lose Life**  
-  "Lose*Funny_Retro_Video Game" by cabled_mess*  
-  LICENSED UNDER CC0 1.0 UNIVERSAL (CC0 1.0) PUBLIC DOMAIN DEDICATION
+#### **Enemy Killed**
+
+"hop8.wav" by felixyadomi  
+ LICENSED UNDER ATTRIBUTION 3.0 UNPORTED (CC BY 3.0)
+
+#### **Background Music**
+
+"Funny background music #7.wav" by BloodPixelHero  
+ LICENSED UNDER ATTRIBUTION 3.0 UNPORTED (CC BY 3.0)
+
+#### **Coin Collected**
+
+"Retro*Coin_03.wav" by MATRIXXX*  
+ LICENSED UNDER CC0 1.0 UNIVERSAL (CC0 1.0) PUBLIC DOMAIN DEDICATION
+
+#### **Lose Life**
+
+"Lose*Funny_Retro_Video Game" by cabled_mess*  
+ LICENSED UNDER CC0 1.0 UNIVERSAL (CC0 1.0) PUBLIC DOMAIN DEDICATION
