@@ -24,7 +24,6 @@ var world;
 var sky;
 
 var gameChar_x;
-var gameChar_world_x;
 var gameChar_y;
 var floorPos_y;
 var scrollPos;

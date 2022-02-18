@@ -235,7 +235,7 @@ function drawEnemies() {
     for (var i = 0; i < enemies.length; i++) {
         if (!enemies[i].isDead) {
             enemies[i].draw();
-            enemies[i].checkDead(gameChar_world_x, character.y);
+            enemies[i].checkDead(character.worldX, character.y);
         }
     }
 }
@@ -282,7 +282,7 @@ function drawCollectables() {
         for (var j = 0; j < collectables[i].length; j++) {
             if (!collectables[i][j].isFound) {
                 collectables[i][j].draw();
-                collectables[i][j].checkCollectable(gameChar_world_x, character.y - collectables[i][j].size);
+                collectables[i][j].checkCollectable(character.worldX, character.y - collectables[i][j].size);
             }
         }
     }

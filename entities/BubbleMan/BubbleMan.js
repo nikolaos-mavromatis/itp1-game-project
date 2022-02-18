@@ -27,7 +27,7 @@ class BubbleMan {
             this.thruster.addParticle();
             this.thruster.run();
         }
-        
+
         if (this.isLeft) {
             // add your walking left code
             this.turnLeft();
@@ -62,7 +62,7 @@ class BubbleMan {
             }
         }
 
-        if (gameChar_world_x <= 0) {
+        if (this.worldX <= 0) {
             this.isLeft = false;
         }
 
@@ -86,7 +86,7 @@ class BubbleMan {
         if (this.y < floorPos_y) {
             // check if character is on any platform
             for (var i = 0; i < platforms.length; i++) {
-                this.isOnPlatform = platforms[i].checkContact(gameChar_world_x, this.y);
+                this.isOnPlatform = platforms[i].checkContact(this.worldX, this.y);
 
                 if (this.isOnPlatform) {
                     this.isFalling = false;
@@ -160,7 +160,7 @@ class BubbleMan {
     checkPlayerDie() {
         for (var i = 0; i < enemies.length; i++) {
             if (!enemies[i].isDead) {
-                this.hitEnemy = enemies[i].checkContact(gameChar_world_x, this.y);
+                this.hitEnemy = enemies[i].checkContact(this.worldX, this.y);
 
                 if (this.hitEnemy) {
                     break;
@@ -169,7 +169,7 @@ class BubbleMan {
         }
 
         for (var i = 0; i < spikes.length; i++) {
-            this.hitSpikes = spikes[i].checkContact(gameChar_world_x, this.y);
+            this.hitSpikes = spikes[i].checkContact(this.worldX, this.y);
 
             if (this.hitSpikes) {
                 break;
@@ -424,7 +424,7 @@ class BubbleMan {
         fill(suitColor);
         rect(leftArmCx, armCy - armH / 2, armW, armH, this.h / 15);
 
-        
+
     }
 
     #drawRightSideArm() {
@@ -460,7 +460,7 @@ class BubbleMan {
         fill(suitColor);
         rect(rightArmCx, armCy - armH / 2, armW, armH, this.h / 15);
 
-        
+
     }
 
     #drawFrontBody() {
@@ -496,7 +496,7 @@ class BubbleMan {
         // draw helmet
         fill(suitColor);
         ellipse(this.x, helmetCy, helmetD, helmetD);
-        
+
         //draw head
         fill(0);
         let headD = this.h / 5;
@@ -553,11 +553,11 @@ class BubbleMan {
         noFill();
         ellipse(this.x, helmetCy + 1, helmetD - 4, helmetD - 1);
         noStroke();
-        
+
         // draw helmet glass
         fill(70, 130, 180, 150);
         let d2 = 0.85 * helmetD;
-        if (this.isLeft){
+        if (this.isLeft) {
             ellipse(this.x - 7, helmetCy, d2, d2);
         }
         if (this.isRight) {
