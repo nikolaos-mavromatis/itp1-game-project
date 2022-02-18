@@ -53,6 +53,7 @@ class BoltWheelie {
             this.checkContact(x, y) &&
             y < this.bodyCy
         ) {
+            enemyKilledSound.play();
             this.isDead = true;
             // character.y -= 15;
         }
