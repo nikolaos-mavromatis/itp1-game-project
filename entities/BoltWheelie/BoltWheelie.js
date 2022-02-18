@@ -55,6 +55,7 @@ class BoltWheelie {
                 (x < this.currentX + this.size / 2)
             )
         ) {
+            enemyKilledSound.play();
             this.isDead = true;
             character.y -= 15;
         }

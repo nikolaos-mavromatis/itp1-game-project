@@ -1,8 +1,8 @@
 /*
 
-The Game Project 6 - Adding game mechanics
+Coursework 2.2 - Game Project Submission
 
-Week 14
+Week 20
 
 */
 var LIVES = 3;
@@ -40,8 +40,7 @@ var coinCollectedSound;
 var loseLifeSound;
 var levelCompleteSound;
 var gameOverSound;
-
-// var angle;
+var enemyKilledSound;
 
 
 function preload() {
@@ -51,7 +50,7 @@ function preload() {
     // Sounds
     soundFormats('mp3', 'wav');
 
-    jumpSound = loadSound('assets/sounds/jump.wav');
+    jumpSound = loadSound('assets/sounds/jumpBoingShort.wav');
     jumpSound.setVolume(0.1);
 
     backgroundMusic = loadSound('assets/sounds/backgroundMusic.wav');
@@ -68,6 +67,9 @@ function preload() {
 
     gameOverSound = loadSound("./assets/sounds/gameOver.wav");
     gameOverSound.setVolume(0.25)
+
+    enemyKilledSound = loadSound('assets/sounds/enemyKilled.wav');
+    enemyKilledSound.setVolume(0.08);
 }
 
 function setup() {
