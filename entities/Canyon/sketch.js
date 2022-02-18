@@ -3,7 +3,7 @@ var canyon;
 function setup() {
     createCanvas(400, 400);
     let w = 200;
-    canyon = new Canyon(width / 2, height / 2, w);
+    canyon = new Canyon(width / 2, 3 * height / 4, w);
 }
 
 function draw() {
