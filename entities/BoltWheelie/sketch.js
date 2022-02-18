@@ -11,9 +11,8 @@ function draw() {
     if (!enemy.isDead) {
         enemy.draw();
         enemy.checkDead(mouseX, mouseY);
-
-        hitEnemy = enemy.checkContact(mouseX, mouseY);
     }
+    hitEnemy = enemy.checkContact(mouseX, mouseY);
 
     //testing
     //reference point
@@ -28,4 +27,19 @@ function draw() {
     stroke(255);
     strokeWeight(1);
     ellipse(enemy.currentX, enemy.y - enemy.size + enemy.r, 2 * enemy.r);
+
+    line(0, enemy.bodyCy, width, enemy.bodyCy);
+
+    noStroke();
+    textAlign(CENTER, TOP);
+    textSize(20);
+    if (hitEnemy) {
+
+        fill("red");
+        text("Player loses life", width / 2, 30);
+    }
+    else if (enemy.isDead) {
+        fill("yellow");
+        text("Enemy down", width / 2, 30);
+    }
 }
