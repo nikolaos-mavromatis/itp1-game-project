@@ -1,7 +1,8 @@
 # Instructions
+
 ## Overview
 
-The final stage of your game project is to make your game awesome. This is your chance to show off your skills in terms of graphics and to produce a polished game project! So try to make your graphics as pretty as possible. 
+The final stage of your game project is to make your game awesome. This is your chance to show off your skills in terms of graphics and to produce a polished game project! So try to make your graphics as pretty as possible.
 
 ### Extensions
 
@@ -47,20 +48,20 @@ Write a comment of around 150 words at the top of your code explaining:
 
 ## Review Criteria
 
-Code presentation: formatting, comments, variable naming __[4 marks]__
+Code presentation: formatting, comments, variable naming **[4 marks]**
 
-Code competency: variables, data structures, use of functions, coherence __[4 marks]__
+Code competency: variables, data structures, use of functions, coherence **[4 marks]**
 
-Functionality: Does it work? __[3 marks]__
+Functionality: Does it work? **[3 marks]**
 
-Game play, level design and aesthetics __[4 marks]__
+Game play, level design and aesthetics **[4 marks]**
 
-Extension: technical complexity __[5 marks]__
+Extension: technical complexity **[5 marks]**
 
-Extension: creativity and aesthetics __[5 marks]__
+Extension: creativity and aesthetics **[5 marks]**
 
-Extension: functionality __[2 marks]__
+Extension: functionality **[2 marks]**
 
-Have you included a commentary? __[2 mark]__
+Have you included a commentary? **[2 mark]**
 
-Is the submission in a zip file? __[1 mark]__    
+Is the submission in a zip file? **[1 mark]**
