@@ -1,6 +1,3 @@
-/**
- * 
- */
 var levelBadge = {
     points: [],
     size: 25,
@@ -26,6 +23,7 @@ var levelBadge = {
 
 
 class Game {
+    /* Renders the game world and the interface.*/
     constructor(level) {
         if (backgroundMusic.isPaused()) {
             backgroundMusic.play();
@@ -91,7 +89,7 @@ class Game {
         text(level, 0, 0);
         pop();
 
-
+        // display lives
         for (var i = 0; i < lives; i++) {
             character.drawLife(width - rightMargin - 15 - i * (30 + rightMargin), topMargin + 15, 30);
         }
@@ -101,8 +99,6 @@ class Game {
         textFont(font);
         textAlign(RIGHT, TOP);
         fill(255, 168, 0);
-        // text("LIVES: " + lives + "\nSCORE: " + game_score, 0.99 * width, 0.02 * height);
-
         nScoreDigits = game_score.toString().length;
         text(game_score, width - rightMargin, 2 * topMargin + fontSize);
         coin = new Collectable(width - rightMargin - 20 - nScoreDigits * 17, 63, 30, "coin");

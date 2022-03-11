@@ -2,6 +2,7 @@ var wheelD;
 var rot = 0;
 
 class BoltWheelie {
+    /* Renders an enemy on wheels featuring a lightning bolt. */
     constructor(x, y, size, range) {
         this.x = x;
         this.y = y;
@@ -15,7 +16,7 @@ class BoltWheelie {
 
         var ratio = 0.85;
         /* 
-        Calculate the radius of the body
+        Calculate the radius of the body:
         size = bodyD + wheelD/2 <=> 
         size = 2*r + ratio * r / 2 <=>
         size = (4*r + ratio*r) / 2 <=>
@@ -62,8 +63,10 @@ class BoltWheelie {
     }
 
     #drawEnemy() {
-        /* x, y represent the middle bottom point of 
-    the rectangle surrounding the enemy */
+        /*
+        x, y represent the middle bottom point of 
+        the rectangle surrounding the enemy
+        */
 
         this.#drawBody();
         this.#drawEye();
@@ -71,12 +74,6 @@ class BoltWheelie {
         this.#drawWheel(this.currentX - 0.5 * this.r, this.y - wheelD / 2, wheelD, this.direction);
         this.#drawWheel(this.currentX + 0.5 * this.r, this.y - wheelD / 2, wheelD, this.direction);
         this.#drawBolt();
-
-        // // reference point
-        // stroke(0);
-        // strokeWeight(5);
-        // point(this.currentX, this.y);
-        // noStroke();
     }
 
     #drawBody() {

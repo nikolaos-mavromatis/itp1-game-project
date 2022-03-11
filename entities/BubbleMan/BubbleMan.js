@@ -1,6 +1,9 @@
 var suitColor;
 
 class BubbleMan {
+    /* Renders the game character.
+    The character features a thruster engine. 
+    */
     constructor(x, y, size) {
         suitColor = color(176, 196, 222);
 
@@ -24,6 +27,7 @@ class BubbleMan {
 
     draw() {
         if (!this.isPlummeting) {
+            // the thruster should not work in case the character is falling into a canyon
             this.thruster.addParticle();
             this.thruster.run();
         }
@@ -40,7 +44,6 @@ class BubbleMan {
             // add your standing front facing code
             this.stand();
         }
-        // this.#drawGrid();
     }
 
     move() {
@@ -62,10 +65,6 @@ class BubbleMan {
             }
         }
 
-        if (this.worldX <= 0) {
-            this.isLeft = false;
-        }
-
         if (this.isRight) {
             if (this.x < width * 0.8) {
                 this.x += this.velocity;
@@ -80,6 +79,11 @@ class BubbleMan {
                 }
                 scrollPos -= 5; // negative for moving against the background
             }
+        }
+
+        // logic to prevent the character from going further then the start of the world
+        if (this.worldX <= 0) {
+            this.isLeft = false;
         }
 
         // Logic to make the game character rise and fall.
@@ -128,7 +132,6 @@ class BubbleMan {
     }
 
     keyPressedInteraction() {
-
         if (key == 'A' || keyCode == 37) {
             this.isLeft = true;
         }
@@ -147,7 +150,6 @@ class BubbleMan {
     }
 
     keyReleasedInteraction() {
-
         if (key == 'A' || keyCode == 37) {
             this.isLeft = false;
         }
@@ -158,6 +160,12 @@ class BubbleMan {
     }
 
     checkPlayerDie() {
+        /*
+        Ways for character to lose a life:
+            - came in contact with an enemy
+            - came in contact with spikes
+            - fell into a canyon
+        */
         for (var i = 0; i < enemies.length; i++) {
             if (!enemies[i].isDead) {
                 this.hitEnemy = enemies[i].checkContact(this.worldX, this.y);
@@ -266,31 +274,6 @@ class BubbleMan {
         fill(70, 130, 180, 150);
         let d2 = 0.85 * size;
         ellipse(x, y, d2, d2);
-    }
-
-    #drawGrid() {
-        stroke(255);
-        strokeWeight(1);
-        line(
-            this.x - 1.5 * this.w / 2, this.y,
-            this.x + 1.5 * this.w / 2, this.y
-        );
-        line(
-            this.x - 1.5 * this.w / 2, this.y - this.h,
-            this.x + 1.5 * this.w / 2, this.y - this.h
-        );
-        line(
-            this.x - this.w / 2, this.y + 0.13 * this.h,
-            this.x - this.w / 2, this.y - 1.13 * this.h
-        );
-        line(
-            this.x + this.w / 2, this.y + 0.13 * this.h,
-            this.x + this.w / 2, this.y - 1.13 * this.h
-        );
-
-        strokeWeight(5);
-        point(this.x, this.y);
-        noStroke();
     }
 
     #drawLegs() {

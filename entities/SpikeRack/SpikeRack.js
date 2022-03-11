@@ -1,4 +1,8 @@
 class SpikeRack {
+    /* Renders a rack of spikes. 
+    It is an additional obstacle in the world which kills 
+    the character when they contact each other.
+    */
     constructor(x, y, w, h, n, inGround) {
         this.x = x;
         this.y = y;
@@ -50,9 +54,9 @@ class SpikeRack {
     checkContact(x, y) {
         /**
          * 3 ways to make contact:
-         * - char falls into the spikes (rack is in the ground)
-         * - char touches the sides of the rack (rack is above the ground)
-         * - char lands on the rack (rack is above the ground)
+         * - char falls into the spikes (when rack is in the ground)
+         * - char touches the sides of the rack (when rack is above the ground)
+         * - char lands on the rack (when rack is above the ground)
          */
 
         if (

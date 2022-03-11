@@ -1,8 +1,7 @@
-/*
-The screen should scroll with the character standing on the platform. 
-Maybe different scrollPos values for various reasons. 
-*/
 class Platform {
+    /* Renders a platform. 
+    The platform is moving if its range is greater than zero.
+    */
     constructor(x, y, size, range) {
         this.x = x;
         this.y = y;
@@ -80,6 +79,9 @@ class Platform {
     }
 
     checkContact(x, y) {
+        /* Returns true if the object with coordinates x, y provided has made contact
+        with the platform.
+        */
         if (x > this.currentX - this.w / 2 && x < this.currentX + this.w / 2) {
             var d = y - this.walkLevel
             if (d >= 0 && d < 5) {

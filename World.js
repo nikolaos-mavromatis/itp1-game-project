@@ -2,10 +2,17 @@ var idx;
 var angle = 0;
 
 class World {
+    /* Renders a level in the game world. 
+    
+    Each level consists of a setup and a render function.
+    The setup function contains the elements and their positions in the world,
+    whereas the render function utilizes helper draw functions to draw the world
+    elements on the screen.
+    */
     constructor(level) {
         this.levels = [
+            // level 1
             {
-                // level 1
                 length: 4096,
                 setup: function () {
                     sky = new NightSky(500);
@@ -118,7 +125,7 @@ class World {
                     character.draw();
                 }
             },
-            // level 2 just for confirmation
+            // level 2 just for transitioning from level to level
             {
                 length: 4096,
                 setup: function () {

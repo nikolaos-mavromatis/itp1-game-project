@@ -3,6 +3,12 @@ var r;
 var angle;
 
 class Collectable {
+    /* Renders a collectable item.
+    There are 2 types of collectables:
+        - coin of value 1, and
+        - diamond of value 2
+    The collectable rotates if the provided radius r is greater than zero.
+    */
     constructor(x, y, size, type, r = 0) {
         this.x = x;
         this.y = y;

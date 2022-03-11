@@ -1,4 +1,9 @@
 class NightSky {
+    /* Renders a starry night sky (almost as good as van Gogh's).
+    
+    Stars are drawn and then some fall and die and then replaced by new ones,
+    so that there is a constant number of stars in the sky.
+    */
     constructor(n) {
         this.n = n;
 
@@ -13,15 +18,14 @@ class NightSky {
     }
 
     render() {
-        // background(25, 25, 112); // original midnight blue
         let gradient = drawingContext.createLinearGradient(width / 2, height + 200, width / 2, 150);
         gradient.addColorStop(0, color(255, 215, 255, 255));
         gradient.addColorStop(1, color(25, 25, 112));
         drawingContext.fillStyle = gradient;
-
         rect(0, 0, width, floorPos_y);
 
         for (var i = this.n - 1; i >= 0; i--) {
+            /* Draw every star in the stars array */
             this.stars[i].draw();
 
             if (this.stars[i].isDead) {
@@ -36,6 +40,15 @@ class NightSky {
 
 var fallingThreshold = 0.0001;
 class Star {
+    /* Creates a star with a very low probability of being a falling star. 
+    
+    With every update, there is a certain probability for a star to become a falling star.
+
+    Once a star becomes a falling star, it starts moving towards a random direction and its
+    brightness is mapped to the distance from its origin, vanishing the further it falls from it.
+
+    The star dies once it reaches a max falling distance.
+    */
     constructor(position) {
         this.origin = position.copy();
         this.position = position.copy();
@@ -73,7 +86,7 @@ class Star {
         }
         else {
             this.position.add(this.velocityX, this.velocityY);
-            this.origin.add(this.velocityX / 2, this.velocityY / 2)
+            this.origin.add(this.velocityX / 2, this.velocityY / 2);
         }
 
         this.distanceFallen = dist(

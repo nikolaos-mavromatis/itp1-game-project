@@ -73,20 +73,5 @@ class Cloud {
             2.4 * r4,
             2 * r4
         );
-
-        // ============ DO NOT INCLUDE - VALIDATING PURPOSES ONLY ============
-        /* 
-            Inscribes the cloud in a rectangle and 
-            draws the point which controls the cloud's position
-        */
-        // noFill();
-        // stroke(0);
-        // strokeWeight(2);
-        // rect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
-        // fill(0);
-        // point(this.x, this.y);
-        // noStroke();
-        // ====================================================================
-
     }
 }

@@ -2,10 +2,10 @@ var sidewallWidth = 15;
 
 class Canyon {
     /*
-    Constructs a canyon using rectangles for the pit
-    and the sidewalls.
+    Constructs a canyon using rectangles for the pit and the sidewalls.
+    As part of the design, lines and circles are added in the canyon's pit.
 
-    The canyon is positioned using the midpoint at ground level..
+    The canyon is positioned using the midpoint at ground level.
     */
     constructor(x, y, width) {
         this.x = x;
@@ -13,10 +13,11 @@ class Canyon {
         this.w = width;
         this.h = height - this.y;
 
-        this.circles = [];
-        this.lines = [];
         this.innerW = this.w - 2 * sidewallWidth
-        let maxD = 10;
+        let maxD = 10; // msx pebble diameter. Also used to set max line length
+
+        /* create an array of random positions for the lines and the circles constrained 
+        into the pit of the canyon */
         this.lines = [];
         for (var i = 0; i < this.innerW / 4; i++) {
             let p1 = createVector(random(this.x - this.innerW / 2, this.x + this.innerW / 2), random(this.y, this.y + this.h));
@@ -40,8 +41,6 @@ class Canyon {
         if (2 * sidewallWidth >= this.w) {
             sidewallWidth = 0.1 * this.w;
         }
-
-        // fill(205, 133, 63);
         fill(233, 133, 45);
         rect(this.x - this.w / 2, this.y, sidewallWidth, this.h);
         rect(this.x + this.w / 2 - sidewallWidth, this.y, sidewallWidth, this.h);
@@ -50,7 +49,7 @@ class Canyon {
         fill(222, 184, 135);
         rect(this.x - this.innerW / 2, this.y, this.innerW, this.h);
 
-        //pebbles
+        //lines
         stroke(139, 69, 19, 50);
         strokeWeight(2);
         for (var i = 0; i < this.lines.length; i++) {
@@ -59,6 +58,7 @@ class Canyon {
         }
         noStroke();
 
+        //circles
         fill(139, 69, 19, 50);
         for (var i = 0; i < this.circles.length; i++) {
             let c = this.circles[i];
